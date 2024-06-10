@@ -28,7 +28,7 @@ app.use(session({
 }));
 
 const corsOptions = {
-  origin: ['http://localhost', 'https://la-holandesa-paulolondra123-paulolondra123s-projects.vercel.app', 'https://la-holandesa-2-0.vercel.app'],
+  origin: ['http://localhost', 'https://la-holandesa-vercel-kwld.vercel.app'],
   methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization'],
   credentials: true
@@ -43,7 +43,7 @@ app.use((req, res, next) => {
     res.locals.currentRoute = req.path;
     next();
   });
-  
+
 // Configurar EJS como motor de plantillas
 app.set('views', path.join(__dirname, 'app/src/presentation/views'));
 app.set('view engine', 'ejs');
