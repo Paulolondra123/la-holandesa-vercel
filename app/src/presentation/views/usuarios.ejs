@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= title %>
+    </title>
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+    <%- include('partials/links/links') %>
+</head>
+
+<body>
+    <!-- Content Padre Start -->
+    <div class="container-fluid position-relative d-flex p-0 padre">
+        <%- include('partials/navegacion/sidebar') %>
+            <!-- Content Start -->
+            <div class="content position-relative">
+                <%- include('partials/navegacion/navbar') %>
+
+
+                <%- include('partials/footer/footer') %>
+            </div>
+            <!-- Content End -->
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            <!-- Back to Top -->
+    </div>
+    <!-- Content Padre End -->
+    <%- include('partials/scripts/scripts') %>
+</body>
+
+</html>

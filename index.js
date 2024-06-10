@@ -6,6 +6,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const indexRoutes = require('./app/src/presentation/routes/index')
+
 dotenv.config();
 
 const app = express();
@@ -35,49 +37,32 @@ const corsOptions = {
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
-app.use(express.static(path.join(__dirname, 'public')));
 
+// Middleware to set current route
+app.use((req, res, next) => {
+    res.locals.currentRoute = req.path;
+    next();
+  });
+  
 // Configurar EJS como motor de plantillas
 app.set('views', path.join(__dirname, 'app/src/presentation/views'));
 app.set('view engine', 'ejs');
+
+
+app.use(express.static(path.join(__dirname, 'app/public/css')));
+app.use(express.static(path.join(__dirname, 'app/public/img')));
+app.use(express.static(path.join(__dirname, 'app/public/js')));
+app.use(express.static(path.join(__dirname, 'app/public/lib')));
+app.use(express.static(path.join(__dirname, 'app/public/scss')));
+app.use(express.static(path.join(__dirname, '/node_modules')));
+
+
 
 //app.use('/La_holandesa', authRoutes);
 // Asegurar rutas protegidas con middleware de autenticación
 // app.use('/La_holandesa/protected', authMiddleware, protectedRoutes);
 
-app.get('/', (req, res) => {
-    res.render('index');
-  });
-// Ruta de inicio
-/* app.get('/', (req, res) => {
-    res.render('index');
-  });
-  
-  // Ruta de login
-  app.get('/login', (req, res) => {
-    res.render('login');
-  });
-  
-  // Ruta para manejar el formulario de inicio de sesión
-  app.post('/login', (req, res) => {
-    // Aquí puedes manejar la lógica de inicio de sesión
-    const username = req.body.username;
-    const password = req.body.password;
-    // Por ahora, simplemente redireccionamos al usuario después del envío del formulario
-    res.redirect('/');
-  });
-  
-  // Ruta de perfil
-  app.get('/profile', (req, res) => {
-    // Aquí puedes pasar datos del usuario al perfil
-    const user = {
-      username: 'exampleuser',
-      email: 'example@example.com',
-      // Otros datos del usuario...
-    };
-    res.render('profile', { user });
-  });
-   */
+app.use(indexRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
