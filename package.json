@@ -1,0 +1,31 @@
+{
+  "name": "la-holandesa-vercel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@flaticon/flaticon-uicons": "^3.2.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "datatables.net-dt": "^2.0.8",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "file-saver": "^2.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "mssql": "^10.0.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.12.0",
+    "select2": "^4.1.0-rc.0"
+  }
+}
