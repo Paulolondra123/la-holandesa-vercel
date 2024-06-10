@@ -54,8 +54,8 @@ app.use(express.static(path.join(__dirname, 'app/public/img')));
 app.use(express.static(path.join(__dirname, 'app/public/js')));
 app.use(express.static(path.join(__dirname, 'app/public/lib')));
 app.use(express.static(path.join(__dirname, 'app/public/scss')));
-app.use(express.static(path.join(__dirname, '/node_modules')));
-
+//app.use(express.static(path.join(__dirname, '/node_modules')));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
 
 //app.use('/La_holandesa', authRoutes);
