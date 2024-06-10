@@ -55,7 +55,16 @@ app.use(express.static(path.join(__dirname, 'app/public/js')));
 app.use(express.static(path.join(__dirname, 'app/public/lib')));
 app.use(express.static(path.join(__dirname, 'app/public/scss')));
 //app.use(express.static(path.join(__dirname, '/node_modules')));
-app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+//app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
+
+// Servir archivos CSS desde node_modules
+app.use('/flaticon', express.static(path.join(__dirname, 'node_modules/@flaticon/flaticon-uicons/css')));
+
+// Servir archivos CSS de dataTables desde node_modules
+app.use('/datatables', express.static(path.join(__dirname, 'node_modules/datatables.net-dt/css')));
+
+// Ruta para sweetalert2
+app.use('/sweetalert2', express.static(path.join(__dirname, 'node_modules/sweetalert2/dist')));
 
 
 //app.use('/La_holandesa', authRoutes);
