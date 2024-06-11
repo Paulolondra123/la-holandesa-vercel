@@ -31,7 +31,7 @@
       <a href="/categorias" class="nav-item nav-link <%= currentRoute === '/categorias' ? 'active' : '' %>"><i class="fi fi-sr-category-alt me-2"></i>Categorias</a>
       <a href="/productos" class="nav-item nav-link <%= currentRoute === '/productos' ? 'active' : '' %>"><i class="fi fi-sr-boxes me-2"></i>Productos</a>
       <div class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle <%= ['/clientes', '/nueva.venta', '/ventas'].includes(currentRoute) ? 'active' : '' %>" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Registro
+        <a href="#" class="nav-link dropdown-toggle <%= ['/clientes', '/nueva-venta', '/ventas'].includes(currentRoute) ? 'active' : '' %>" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Registro
           Ventas</a>
         <div class="dropdown-menu bg-transparent border-0">
           <a href="/clientes" class="dropdown-item <%= currentRoute === '/clientes' ? 'active' : '' %>">Clientes</a>
@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle <%= ['/proveedores', '/nueva.compra', '/compras'].includes(currentRoute) ? 'active' : '' %>" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Registro
+        <a href="#" class="nav-link dropdown-toggle <%= ['/proveedores', '/nueva-compra', '/compras'].includes(currentRoute) ? 'active' : '' %>" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Registro
           Compras</a>
         <div class="dropdown-menu bg-transparent border-0">
           <a href="/proveedores" class="dropdown-item <%= currentRoute === '/proveedores' ? 'active' : '' %>">Proveedores</a>
