@@ -20,8 +20,43 @@
             <div class="content position-relative">
                 <%- include('partials/navegacion/navbar') %>
 
+                    <!-- Chart Start -->
+                    <div class="container-fluid pt-4 px-4" id="chart">
+                        <div class="row g-4">
+                            <div class="bg-secondary text-center rounded p-4">
+                                <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <h6 class="mb-0">Registro Usuario</h6>
+                                    <button type="button" class="btn btn2-primary m-2" id="btnAgregarUsuario">
+                                        Registrar
+                                    </button>
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="myTable" class="table align-middle table-bordered table-hover mb-0">
+                                        <thead>
+                                            <tr class="text-white">
+                                                <th scope="col">#</th>
+                                                <th scope="col">Nombres</th>
+                                                <th scope="col">Apellidos</th>
+                                                <!-- <th scope="col">Foto</th> -->
+                                                <th scope="col">Usuario</th>
+                                                <th scope="col">Perfil</th>
+                                                <th scope="col">Fecha de <br> Registro</th>
+                                                <th scope="col">Habilitado</th>
+                                                <th scope="col">Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="usuarios">
+                                            <!--mostrar tabla usuario-->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chart End -->
 
-                <%- include('partials/footer/footer') %>
+
+                    <%- include('partials/footer/footer') %>
             </div>
             <!-- Content End -->
             <!-- Back to Top -->
