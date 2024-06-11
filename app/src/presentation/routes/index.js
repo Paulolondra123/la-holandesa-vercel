@@ -39,7 +39,7 @@ router.get('/Clientes', (req, res) => {
 });
 
 // Ruta de nueva venta
-router.get('/Nueva venta', (req, res) => {
+router.get('/Nueva.venta', (req, res) => {
     res.render('nueva_venta',{title: 'Nueva venta⛺'});
 });
 
