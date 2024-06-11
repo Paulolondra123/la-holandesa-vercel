@@ -5,7 +5,7 @@ const router = express.Router();
 
 // Ruta de inicio
 router.get('/', (req, res) => {
-    res.render('index',{title: 'Index'});
+    res.render('index',{title: 'Dashboard'});
 });
   
 // Ruta de login
