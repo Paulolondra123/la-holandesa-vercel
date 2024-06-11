@@ -39,7 +39,7 @@ router.get('/Clientes', (req, res) => {
 });
 
 // Ruta de nueva venta
-router.get('/Nueva.venta', (req, res) => {
+router.get('/Nueva-venta', (req, res) => {
     res.render('nueva_venta',{title: 'Nueva venta⛺'});
 });
 
@@ -54,7 +54,7 @@ router.get('/Proveedores', (req, res) => {
 });
 
 // Ruta de nueva compra
-router.get('/Nueva.compra', (req, res) => {
+router.get('/Nueva-compra', (req, res) => {
     res.render('nueva_compra',{title: 'Nueva compra📝'});
 });
 
