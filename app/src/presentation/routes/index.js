@@ -54,7 +54,7 @@ router.get('/Proveedores', (req, res) => {
 });
 
 // Ruta de nueva compra
-router.get('/Nueva compra', (req, res) => {
+router.get('/Nueva.compra', (req, res) => {
     res.render('nueva_compra',{title: 'Nueva compra📝'});
 });
 
