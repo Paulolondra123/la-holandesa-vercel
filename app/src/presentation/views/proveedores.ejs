@@ -10,6 +10,36 @@
   </head>
 
   <body>
+    <!-- Form Registro Start-->
+    <div
+      id="myForm"
+      class="visual position-absolute top-50 start-50 translate-middle bg-secondary rounded col-sm-12 col-xl-5"
+    >
+      <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Registrar proveedor</h6>
+        <form id="form">
+          <div class="mb-3">
+            <label for="razon_social" class="form-label">Razon social</label>
+            <input type="text" class="form-control" id="razon_social" required />
+          </div>
+          <div class="mb-3">
+            <label for="telefono" class="form-label">Telefono</label>
+            <input type="text" class="form-control" id="telefono" required />
+          </div>
+          <div class="mb-3">
+            <label for="descripcion" class="form-label">Descripcion</label>
+            <input type="text" class="form-control" id="descripcion" required />
+          </div>
+          <div class="mb-3">
+            <label for="direccion" class="form-label">Direccion</label>
+            <input type="text" class="form-control" id="direccion" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+      </div>
+    </div>
+    <!-- Form Registro End-->
+
     <!-- Content Padre Start -->
     <div class="container-fluid position-relative d-flex p-0 padre">
       <%- include('partials/navegacion/sidebar') %>
@@ -17,6 +47,45 @@
       <div class="content position-relative">
         <%- include('partials/navegacion/navbar') %> 
         
+        <!-- Chart Start -->
+        <div class="container-fluid pt-4 px-4" id="chart">
+          <div class="row g-4">
+            <div class="bg-secondary text-center rounded p-4">
+              <div
+                class="d-flex align-items-center justify-content-between mb-4"
+              >
+                <h6 class="mb-0">Registro Proveedor</h6>
+                <button
+                  type="button"
+                  class="btn btn2-primary m-2"
+                  id="btnAgregarUsuario"
+                >
+                  Registrar
+                </button>
+              </div>
+              <div class="table-responsive">
+                <table id="myTable" class="display table align-middle table-bordered table-hover mb-0">
+                  <thead>
+                    <tr class="text-white">
+                      <th scope="col">#</th>
+                      <th scope="col">Razon Social</th>
+                      <th scope="col">Telefono</th>
+                      <th scope="col">Descripcion</th>
+                      <th scope="col">Direccion</th>
+                      <th scope="col">Fecha de <br> Registro</th>
+                      <th scope="col">Habilitado</th>
+                      <th scope="col">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody id="proveedor">
+                    <!--mostrar tabla usuario-->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Chart End -->
         
         <%- include('partials/footer/footer') %>
       </div>
@@ -29,5 +98,38 @@
     </div>
     <!-- Content Padre End -->
     <%- include('partials/scripts/scripts') %>
+    <script>
+      // JavaScript para mostrar/ocultar el formulario
+      document.addEventListener("DOMContentLoaded", function () {
+        const btnAgregarUsuario = document.querySelector("#btnAgregarUsuario");
+        const formAgregarUsuario = document.querySelector("#myForm");
+        const contenidoPadre = document.querySelector(".padre");
+
+        btnAgregarUsuario.addEventListener("click", function (event) {
+          event.stopPropagation(); // Detiene la propagación del evento
+          formAgregarUsuario.classList.add("visuali"); // Muestra el formulario con animación
+          contenidoPadre.classList.add("blur"); // Aplica el efecto de desenfoque al contenedor padre
+        });
+
+        formAgregarUsuario.addEventListener("submit", function (event) {
+          event.stopPropagation(); // Detiene la propagación del evento
+          formAgregarUsuario.classList.remove("visuali"); // Oculta el formulario después de enviarlo
+          contenidoPadre.classList.remove("blur"); // Elimina el efecto de desenfoque del contenedor padre
+          // Aquí puedes agregar código para manejar el envío del formulario
+        });
+
+        window.addEventListener("click", function (event) {
+          if (
+            !event.target.matches("#btnAgregarUsuario") &&
+            !formAgregarUsuario.contains(event.target)
+          ) {
+            if (formAgregarUsuario.classList.contains("visuali")) {
+              formAgregarUsuario.classList.remove("visuali"); // Quita la clase para ocultar el formulario
+              contenidoPadre.classList.remove("blur"); // Elimina el efecto de desenfoque del contenedor padre
+            }
+          }
+        });
+      });
+    </script>
   </body>
 </html>

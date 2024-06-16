@@ -11,6 +11,48 @@
   </head>
 
   <body>
+    <!-- Form Registro Start-->
+    <div
+      id="myForm"
+      class="visual position-absolute top-50 start-50 translate-middle bg-secondary rounded col-sm-12 col-xl-6"
+    >
+      <div class="bg-secondary rounded h-100 p-4">
+        <h6 class="mb-4">Registrar Productos</h6>
+        <form id="form" >
+          <!--<div class="col-xl-5">-->
+            <div class="mb-3">
+              <label for="nombre_producto" class="form-label">Nombre del Producto</label>
+              <input type="text" class="form-control form-control-sm" id="nombre_producto" required />
+            </div>
+            <div class="mb-3">
+              <label for="precio" class="form-label">Precio Unitario</label>
+              <input type="text" class="form-control form-control-sm" id="precio" required />
+            </div>
+            <div class="mb-3">
+              <label for="categoria" class="form-label">Categoria</label>
+              <select class="form-select" id="categoria" required>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="medida" class="form-label">Medida</label>
+              <select class="form-select" id="medida" required>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="fecha_elaboracion" class="form-label">Fecha de elaboracion</label>
+              <input type="date" class="form-control form-control-sm" id="fecha_elaboracion" value="2024-04-20" required />
+            </div>
+            <div class="mb-3">
+              <label for="fecha_vencimiento" class="form-label">Fecha de vencimiento</label>
+              <input type="date" class="form-control form-control-sm" id="fecha_vencimiento" value="2024-04-20" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+          <!--</div>-->
+        </form>
+      </div>
+    </div>
+    <!-- Form Registro End-->
+
     <!-- Content Padre Start -->
     <div class="container-fluid position-relative d-flex p-0 padre">
       <%- include('partials/navegacion/sidebar') %>
@@ -18,6 +60,49 @@
       <div class="content position-relative">
         <%- include('partials/navegacion/navbar') %> 
         
+        <!-- Chart Start -->
+        <div class="container-fluid pt-4 px-4" id="chart">
+          <div class="row g-4">
+            <div class="bg-secondary text-center rounded p-4">
+              <div
+                class="d-flex align-items-center justify-content-between mb-4"
+              >
+                <h6 class="mb-0">Registro Productos</h6>
+                <button
+                  type="button"
+                  class="btn btn2-primary m-2"
+                  id="btnAgregarUsuario"
+                >
+                  Registrar
+                </button>
+              </div>
+              <div class="table-responsive">
+                <table id="myTable" class="table align-middle table-bordered table-hover mb-0">
+                    <thead>
+                      <tr class="text-white">
+                        <th scope="col">#</th>
+                        <th scope="col">Producto</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Fecha de <br> elaboracion</th>
+                        <th scope="col">Fecha de <br> vencimiento</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Medida</th>
+                        <th scope="col">Fecha de <br> Registro</th>
+                        <th scope="col">Habilitado</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody id="productos">
+                      <!--mostrar tabla usuario-->
+                    </tbody>
+                  </div>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Chart End -->
         
         <%- include('partials/footer/footer') %>
       </div>
@@ -30,5 +115,40 @@
     </div>
     <!-- Content Padre End -->
     <%- include('partials/scripts/scripts') %>
+    <script>
+      // JavaScript para mostrar/ocultar el formulario
+      document.addEventListener("DOMContentLoaded", function () {
+        const btnAgregarUsuario = document.querySelector("#btnAgregarUsuario");
+        const formAgregarUsuario = document.querySelector("#myForm");
+        const contenidoPadre = document.querySelector(".padre");
+
+        btnAgregarUsuario.addEventListener("click", function (event) {
+          event.stopPropagation(); // Detiene la propagación del evento
+          formAgregarUsuario.classList.add("visuali"); // Muestra el formulario con animación
+          contenidoPadre.classList.add("blur"); // Aplica el efecto de desenfoque al contenedor padre
+        });
+
+        formAgregarUsuario.addEventListener("submit", function (event) {
+          event.stopPropagation(); // Detiene la propagación del evento
+          formAgregarUsuario.classList.remove("visuali"); // Oculta el formulario después de enviarlo
+          contenidoPadre.classList.remove("blur"); // Elimina el efecto de desenfoque del contenedor padre
+          // Aquí puedes agregar código para manejar el envío del formulario
+        });
+
+        window.addEventListener("click", function (event) {
+          if (
+            !event.target.matches("#btnAgregarUsuario") &&
+            !formAgregarUsuario.contains(event.target) &&
+            !event.target.closest(".select2-container")
+          ) {
+            if (formAgregarUsuario.classList.contains("visuali")) {
+              formAgregarUsuario.classList.remove("visuali"); // Quita la clase para ocultar el formulario
+              contenidoPadre.classList.remove("blur"); // Elimina el efecto de desenfoque del contenedor padre
+            }
+          }
+        });
+
+      });
+    </script>
   </body>
 </html>
