@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 const corsOptions = {
-  origin: ['http://localhost', 'https://la-holandesa-vercel-kwld.vercel.app'],
+  origin: ['http://localhost:3009', 'https://la-holandesa-vercel-kwld.vercel.app','https://la-holandesa.vercel.app'],
   methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
   allowedHeaders: ['X-Requested-With', 'Content-Type', 'Authorization'],
   credentials: true
