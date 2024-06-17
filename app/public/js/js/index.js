@@ -6,10 +6,10 @@ const obtenerToken = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
         // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-        window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+        window.location.href = "http://localhost:3009/login";
         return; // Detener la ejecución del código
       }
-      const respuesta = await fetch('http://localhost:3009/La_holandesa/usuario_aut', {
+      const respuesta = await fetch('http://localhost:3009/usuario_aut', {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -72,28 +72,28 @@ const obtenerToken = async () => {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return;
         }
         
         // Hacer solicitudes para obtener los datos
         const [usuariosRes, clientesRes, productosRes, ventasRes] = await Promise.all([
-            fetch('http://localhost:3009/La_holandesa/usuarios/count', {
+            fetch('http://localhost:3009/usuarios/count', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }),
-            fetch('http://localhost:3009/La_holandesa/clientes/count', {
+            fetch('http://localhost:3009/clientes/count', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }),
-            fetch('http://localhost:3009/La_holandesa/productos/count', {
+            fetch('http://localhost:3009/productos/count', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
             }),
-            fetch('http://localhost:3009/La_holandesa/ventas/count', {
+            fetch('http://localhost:3009/ventas/count', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -148,10 +148,10 @@ window.onload = fetchData;
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/productos_stock", {
+        const response = await fetch("http://localhost:3009/productos_stock", {
             headers: {
                 Authorization: `Bearer ${token}`,
             }

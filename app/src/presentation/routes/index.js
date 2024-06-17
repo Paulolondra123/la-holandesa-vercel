@@ -1,13 +1,13 @@
 const express = require('express');
 //const AuthController = require('../controllers/authController');
-
 const router = express.Router();
+const vendedorRoutes = require('./vendedorRoutes'); // Importa las rutas del vendedor
 
 // Ruta de inicio
 router.get('/', (req, res) => {
     res.render('index',{title: 'Dashboard'});
 });
-  
+
 // Ruta de login
 router.get('/login', (req, res) => {
     res.render('login',{title: 'Login🔑'});
@@ -62,5 +62,9 @@ router.get('/Nueva-compra', (req, res) => {
 router.get('/Compras', (req, res) => {
     res.render('compras',{title: 'Compras📝'});
 });
+
+// Usa las rutas específicas para el vendedor
+router.use('/vendedor', vendedorRoutes);
+
 
 module.exports = router;

@@ -1,3 +1,4 @@
+let userId = null; // Variable global para almacenar el ID del usuario
 
 // login.js
 const form_login = document.getElementById('login-form');
@@ -7,7 +8,7 @@ form_login.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('http://localhost:3009/La_holandesa/login', {
+        const response = await fetch('http://localhost:3009/logins', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -23,15 +24,11 @@ form_login.addEventListener('submit', async (e) => {
 
         if (response.ok) {
             localStorage.setItem('token', data.token);
-            await Swal.fire({
-                title: "Logueado correctamente!",
-                icon: "success",
-                timer: 1500,
-                showConfirmButton: false
-            });
-            verificarAutenticacion(); // Verificar la autenticación después de iniciar sesión
+
+            await verificarprimerlogin();
+
+            
         } else {
-            // Manejo de errores en caso de credenciales incorrectas
             Swal.fire({
                 title: "Error",
                 text: data.error || 'Credenciales incorrectas',
@@ -52,34 +49,87 @@ form_login.addEventListener('submit', async (e) => {
 });
 
 
-const verificarAutenticacion = async () => {
+const verificarprimerlogin = async () => {
     try {
-        const response = await fetch('http://localhost:3009/La_holandesa/verify-auth', {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          window.location.href = "http://localhost:3009/login";
+          return;
+        }
+        const response = await fetch('http://localhost:3009/verify-auth', {
             method: 'GET',
             credentials: 'include',
             headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
+                'Authorization': `Bearer ${token}`
             }
         });
 
         if (response.ok) {
             const data = await response.json();
-            const { perfil } = data; // Suponiendo que el perfil está incluido en los datos de la respuesta
-            console.log(perfil)
-            // Redirigir según el perfil del usuario
-            if (perfil === 'VENDEDOR') {
-                // Redirigir a la página del vendedor
-                window.location.href = "http://127.0.0.1:5500/frond/Y.vendedor/index.html";
-            } else if (perfil === 'ADMINISTRADOR') {
-                // Redirigir a la página del administrador
-                window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/index.html";
+            
+            const { perfil, primerlogin, id } = data;
+            userId = id; // Asegúrate de que `id` esté en `perfil`
+            
+            if (primerlogin === true) {
+
+                document.getElementById('change-password-container').style.zIndex = '0';
+                document.getElementById('change-password-container').style.opacity = '1';
             } else {
-                // Perfil desconocido, redirigir a la página de inicio de sesión
-                window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+                await verificarAutenticacion();
             }
         } else {
-            // El usuario no está autenticado, redirigirlo a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
+        }
+    } catch (error) {
+        console.error("Error al verificar autenticación:", error);
+        window.location.href = "http://localhost:3009/login";
+    }
+};
+
+
+
+const verificarAutenticacion = async () => {
+    try {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          window.location.href = "http://localhost:3009/login";
+          return;
+        }
+        const response = await fetch('http://localhost:3009/verify-auth', {
+            method: 'GET',
+            credentials: 'include',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            
+            const { perfil } = data;
+
+            console.log(perfil);
+            if (perfil === 'VENDEDOR') {
+                await Swal.fire({
+                    title: "Logueado correctamente!",
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                window.location.href = "http://localhost:3009/vendedor";
+            } else if (perfil === 'ADMINISTRADOR') {
+                await Swal.fire({
+                    title: "Logueado correctamente!",
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+                window.location.href = "http://localhost:3009";
+            } else {
+                window.location.href = "http://localhost:3009/login";
+            }
+        } else {
+            window.location.href = "http://localhost:3009/login";
         }
     } catch (error) {
         console.error("Error al verificar autenticación:", error);
@@ -88,26 +138,110 @@ const verificarAutenticacion = async () => {
 
 // Llamar a la función de verificación de autenticación al cargar la página
 
-
-// Función para decodificar un token JWT (JSON Web Token)
-function parseJwt(token) {
-    try {
-        // Dividir el token en sus tres partes: encabezado, carga útil y firma
-        const [header, payload, signature] = token.split('.');
-        // Decodificar la carga útil Base64 y analizarla como JSON
-        const decodedPayload = JSON.parse(atob(payload));
-        // Decodificar el encabezado Base64 y analizarlo como JSON
-        const decodedHeader = JSON.parse(atob(header));
-        return { header: decodedHeader, payload: decodedPayload };
-    } catch (error) {
-        // Manejar errores al decodificar el token
-        console.error('Error al decodificar el token:', error);
-        return null;
-    }
-}
-
 //**************Función para verificar la autenticación del usuario********************/
 
   
-  //**************Función para verificar la autenticación del usuario********************/
+//*****************************editar contraseña y guardar********************************/
+const formcanbiarcontra = document.getElementById("change-password-form");
+
+formcanbiarcontra.addEventListener("submit", async function (event) {
+  event.preventDefault(); // Evitar que se recargue la página al enviar el formulario
+
+  const nuevaContraseña = document.getElementById("nueva_contraseña").value;
+  const confirmarContraseña = document.getElementById("confirmar_contraseña").value;
+
+  if (nuevaContraseña !== confirmarContraseña) {
+      Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'Las contraseñas no coinciden',
+      });
+      return; // Detener la ejecución del código
+  }
+
+  try {
+      const { isConfirmed } = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: '¿Quieres guardar los cambios realizados?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, guardar',
+      });
+      await userId
+      if (isConfirmed) {
+        const token = localStorage.getItem("token");
+        if (!token) {
+          window.location.href = "http://localhost:3009/login";
+          return;
+        }
+        const response = await fetch(
+            'http://localhost:3009/cambiar_contrasena',
+            {
+                method: 'PUT',
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+                body: JSON.stringify({
+                    userId,
+                    nuevaContraseña,
+                }),
+            }
+        );
+        document.getElementById('change-password-container').style.opacity = '0';
+
+        const result = await response.json();
+
+        if (response.status !== 200) {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: "bottom-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+            });
+            Toast.fire({
+              icon: "error",
+              title: result.error || 'Error al actualizar la contraseña',
+            });
+            return;
+        }
+
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "bottom-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+        Toast.fire({
+          icon: "success",
+          title: 'Contraseña actualizada correctamente',
+        });
+        document.getElementById("change-password-form").reset();
+       
+        // Redirigir al usuario a la página principal adecuada
+        await verificarAutenticacion();
+      } else {
+        document.getElementById("change-password-form").reset();
+      }
+  } catch (error) {
+      const Toast = Swal.mixin({
+        toast: true,
+        position: "bottom-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+      Toast.fire({
+        icon: "error",
+        title: 'Ocurrió un error al actualizar la contraseña',
+      });
+  }
+});
+
   
+
+//*****************************editar contraseña y guardar********************************/

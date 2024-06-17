@@ -1,4 +1,4 @@
-const User = require('../../presentation/models/user');
+const User = require('../../presentation/models/login_model');
 const jwt = require('jsonwebtoken');
 
 class AuthService {

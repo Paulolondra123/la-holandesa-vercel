@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+    <%- include('partials/links/links') %>
+  </head>
+
+  <body>
+    <!-- Content Padre Start -->
+    <div class="container-fluid position-relative d-flex p-0 padre">
+      <%- include('partials/navegacion/sidebar') %>
+      <!-- Content Start -->
+      <div class="content position-relative">
+        <%- include('partials/navegacion/navbar') %> 
+        
+        <!-- Chart Start -->
+        <div class="container-fluid pt-4 px-4" id="chart">
+          <div class="row g-4">
+            <div class="bg-secondary text-center rounded p-4">
+              <div
+                class="d-flex mb-4"
+              >
+                <h6 class="mb-0">Registro ventas</h6>
+              </div>
+              <div class="table-responsive">
+                <table id="myTable" class="table align-middle table-bordered table-hover mb-0">
+                    <thead>
+                      <tr class="text-white">
+                        <th scope="col">#</th>
+                        <th scope="col">Vendedor</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Monto total</th>
+                        <th scope="col">Fecha de <br> Registro</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody id="ventas">
+                      <!--mostrar tabla usuario-->
+                    </tbody>
+                  </div>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Chart End -->
+
+        
+        <%- include('partials/footer/footer') %>
+      </div>
+      <!-- Content End -->
+      <!-- Back to Top -->
+      <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"
+        ><i class="bi bi-arrow-up"></i
+      ></a>
+      <!-- Back to Top -->
+    </div>
+    <!-- Content Padre End -->
+    <%- include('partials/scripts/scripts') %>
+  </body>
+</html>

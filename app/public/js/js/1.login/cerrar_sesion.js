@@ -5,7 +5,7 @@ logoutButton.addEventListener('click', async (e) => {
     console.log("hisiste click")
     try {
         // Envía una solicitud al servidor para cerrar la sesión
-        const response = await fetch('http://localhost:3009/La_holandesa/logout', {
+        const response = await fetch('http://localhost:3009/logout', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}` // Incluye el token en el encabezado de autorización
@@ -16,7 +16,7 @@ logoutButton.addEventListener('click', async (e) => {
             // Elimina el token del almacenamiento local
             localStorage.removeItem('token');
             // Redirige al usuario a la página de inicio de sesión
-            window.location.href = 'http://127.0.0.1:5500/frond/Z.administrador/login.html';
+            window.location.href = 'http://localhost:3009/login';
         } else {
             const errorData = await response.json();
             console.error('Error al cerrar sesión:', errorData.error);

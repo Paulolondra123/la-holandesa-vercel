@@ -6,26 +6,13 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const indexRoutes = require('./app/src/presentation/routes/index')
-
 dotenv.config();
 
 const app = express();
 
 // Configurar bodyParser para analizar datos de formularios
 app.use(bodyParser.urlencoded({ extended: false }));
-
-
-const authRoutes = require('./app/src/presentation/routes/authRoutes');
-const authMiddleware = require('./app/src/presentation/middleware/authMiddleware');
-
-const PORT = process.env.PORT || 3000;
-
-app.use(session({
-  secret: 'secretkey',
-  resave: true,
-  saveUninitialized: true
-}));
+app.use(bodyParser.json());
 
 const corsOptions = {
   origin: ['http://localhost', 'https://la-holandesa-vercel-kwld.vercel.app'],
@@ -35,27 +22,30 @@ const corsOptions = {
 };
 
 app.use(cookieParser());
-app.use(bodyParser.json());
 app.use(cors(corsOptions));
 
-// Middleware to set current route
+app.use(session({
+  secret: 'secretkey',
+  resave: true,
+  saveUninitialized: true
+}));
+
+//Middleware to set current route
 app.use((req, res, next) => {
-    res.locals.currentRoute = req.path;
-    next();
-  });
+  res.locals.currentRoute = req.path;
+  next();
+});
 
 // Configurar EJS como motor de plantillas
 app.set('views', path.join(__dirname, 'app/src/presentation/views'));
 app.set('view engine', 'ejs');
 
-
+// Configurar las rutas para los archivos estáticos
 app.use(express.static(path.join(__dirname, 'app/public/css')));
 app.use(express.static(path.join(__dirname, 'app/public/img')));
 app.use(express.static(path.join(__dirname, 'app/public/js')));
 app.use(express.static(path.join(__dirname, 'app/public/lib')));
 app.use(express.static(path.join(__dirname, 'app/public/scss')));
-//app.use(express.static(path.join(__dirname, '/node_modules')));
-//app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
 // Servir archivos CSS desde node_modules
 app.use('/flaticon', express.static(path.join(__dirname, 'node_modules/@flaticon/flaticon-uicons/css')));
@@ -63,15 +53,40 @@ app.use('/flaticon', express.static(path.join(__dirname, 'node_modules/@flaticon
 // Servir archivos CSS de dataTables desde node_modules
 app.use('/datatables', express.static(path.join(__dirname, 'node_modules/datatables.net-dt/css')));
 
+// Servir archivos CSS de dataTables desde node_modules
+app.use('/datatables', express.static(path.join(__dirname, 'node_modules/datatables.net/js')));
+
 // Ruta para sweetalert2
 app.use('/sweetalert2', express.static(path.join(__dirname, 'node_modules/sweetalert2/dist')));
 
+// Importar y configurar las rutas
+const indexRoutes = require('./app/src/presentation/routes/index')
+const authRoutes = require('./app/src/presentation/routes/authRoutes')
+const usuarioRoutes = require('./app/src/presentation/routes/usuarioRoutes')
+const dashboardRoutes = require('./app/src/presentation/routes/dashboardRoutes')
+const medidaRoutes = require('./app/src/presentation/routes/medidaRoutes')
+
+
+
+//const authRoutes = require('./app/src/presentation/routes/authRoutes');
+const authMiddleware = require('./app/src/presentation/middleware/authMiddleware');
+
+app.use(indexRoutes);
+app.use(authRoutes);
+app.use(usuarioRoutes,authMiddleware);
+app.use(dashboardRoutes,authMiddleware);
+app.use(medidaRoutes,authMiddleware);
+
+
+//app.use('/auth', authRoutes);
+// Asegurar rutas protegidas con middleware de autenticación
+//app.use('/protected', authMiddleware, protectedRoutes);
+
+const PORT = process.env.PORT || 3000;
 
 //app.use('/La_holandesa', authRoutes);
 // Asegurar rutas protegidas con middleware de autenticación
 // app.use('/La_holandesa/protected', authMiddleware, protectedRoutes);
-
-app.use(indexRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
