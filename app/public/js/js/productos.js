@@ -5,10 +5,10 @@ const obtenerToken = async () => {
     const token = localStorage.getItem("token");
     if (!token) {
       // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+      window.location.href = "http://localhost:3009/login";
       return; // Detener la ejecución del código
     }
-    const respuesta = await fetch('http://localhost:3009/La_holandesa/usuario_aut', {
+    const respuesta = await fetch('http://localhost:3009/usuario_aut', {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
@@ -77,10 +77,10 @@ function mayus(e) {
       const token = localStorage.getItem("token");
       if (!token) {
         // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-        window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+        window.location.href = "http://localhost:3009/login";
         return; // Detener la ejecución del código
       }
-      const response = await fetch("http://localhost:3009/La_holandesa/categoria",{
+      const response = await fetch("http://localhost:3009/categoria",{
         headers:{
           Authorization: `Bearer ${token}`,
         }
@@ -107,10 +107,10 @@ function mayus(e) {
       const token = localStorage.getItem("token");
       if (!token) {
         // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-        window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+        window.location.href = "http://localhost:3009/login";
         return; // Detener la ejecución del código
       }
-      const response = await fetch("http://localhost:3009/La_holandesa/medida",{
+      const response = await fetch("http://localhost:3009/medida",{
         headers:{
           Authorization: `Bearer ${token}`,
         }
@@ -182,12 +182,12 @@ function mayus(e) {
       const token = localStorage.getItem("token");
       if (!token) {
         // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-        window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+        window.location.href = "http://localhost:3009/login";
         return; // Detener la ejecución del código
       }
       // Enviar los datos al servidor para crear el nuevo usuario
       const response = await fetch(
-        "http://localhost:3009/La_holandesa/create_Productos",
+        "http://localhost:3009/create_Productos",
         {
           method: "POST",
           headers: {
@@ -257,10 +257,10 @@ function mayus(e) {
     try {
         const token = localStorage.getItem("token");
         if (!token) {
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return {};
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/categoria", {
+        const response = await fetch("http://localhost:3009/categoria", {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -288,10 +288,10 @@ const getAllMeasure = async () => {
     try {
         const token = localStorage.getItem("token");
         if (!token) {
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return {};
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/medida", {
+        const response = await fetch("http://localhost:3009/medida", {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -601,10 +601,10 @@ const getAllMeasuresPromise = getAllMeasure();
       try {
           const token = localStorage.getItem("token");
           if (!token) {
-              window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+              window.location.href = "http://localhost:3009/login";
               return;
           }
-          const response = await fetch("http://localhost:3009/La_holandesa/productos", {
+          const response = await fetch("http://localhost:3009/productos", {
               headers: {
                   Authorization: `Bearer ${token}`
               }
@@ -749,11 +749,11 @@ const getAllMeasuresPromise = getAllMeasure();
         const token = localStorage.getItem("token");
         if (!token) {
           // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-          window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+          window.location.href = "http://localhost:3009/login";
           return; // Detener la ejecución del código
         }
         const response = await fetch(
-          `http://localhost:3009/La_holandesa/Productos/${id_producto}`,
+          `http://localhost:3009/Productos/${id_producto}`,
           {
             method: "PUT",
             headers: {
@@ -845,11 +845,11 @@ const getAllMeasuresPromise = getAllMeasure();
         const token = localStorage.getItem("token");
         if (!token) {
           // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-          window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+          window.location.href = "http://localhost:3009/login";
           return; // Detener la ejecución del código
         }
         const response = await fetch(
-          `http://localhost:3009/La_holandesa/Productos/${userId}/state`,
+          `http://localhost:3009/Productos/${userId}/state`,
           {
             method: "PUT",
             headers: {
@@ -923,11 +923,11 @@ const getAllMeasuresPromise = getAllMeasure();
         const token = localStorage.getItem("token");
         if (!token) {
           // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-          window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+          window.location.href = "http://localhost:3009/login";
           return; // Detener la ejecución del código
         }
         const response = await fetch(
-          `http://localhost:3009/La_holandesa/Productos_delete/${userId}`,
+          `http://localhost:3009/Productos_delete/${userId}`,
           {
             method: "DELETE",
             headers:{
@@ -1002,10 +1002,10 @@ const getAllMeasuresPromise = getAllMeasure();
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/productos_stock", {
+        const response = await fetch("http://localhost:3009/productos_stock", {
             headers: {
                 Authorization: `Bearer ${token}`,
             }

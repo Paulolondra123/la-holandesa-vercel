@@ -12,6 +12,11 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
     res.render('login',{title: 'Login🔑'});
 });
+
+// Ruta de perfil
+router.get('/Perfil', (req, res) => {
+    res.render('perfil',{title: 'Perfil🔑'});
+});
   
 // Ruta de usuarios
 router.get('/Usuarios', (req, res) => {

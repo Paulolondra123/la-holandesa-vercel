@@ -65,6 +65,10 @@ const authRoutes = require('./app/src/presentation/routes/authRoutes')
 const usuarioRoutes = require('./app/src/presentation/routes/usuarioRoutes')
 const dashboardRoutes = require('./app/src/presentation/routes/dashboardRoutes')
 const medidaRoutes = require('./app/src/presentation/routes/medidaRoutes')
+const categoriaRoutes = require('./app/src/presentation/routes/categoriaRoutes')
+const productosRoutes = require('./app/src/presentation/routes/productosRoutes')
+const clienteRoutes = require('./app/src/presentation/routes/clienteRoutes')
+const ventaRoutes = require('./app/src/presentation/routes/ventaRoutes')
 
 
 
@@ -76,6 +80,10 @@ app.use(authRoutes);
 app.use(usuarioRoutes,authMiddleware);
 app.use(dashboardRoutes,authMiddleware);
 app.use(medidaRoutes,authMiddleware);
+app.use(categoriaRoutes,authMiddleware);
+app.use(productosRoutes,authMiddleware);
+app.use(clienteRoutes,authMiddleware);
+app.use(ventaRoutes,authMiddleware);
 
 
 //app.use('/auth', authRoutes);
