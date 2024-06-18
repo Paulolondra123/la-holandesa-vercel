@@ -12,7 +12,7 @@ const multer = require('multer');
 
 
 // Ruta para obtener todos los usuarios
-router.get('/productos',Users.getAll)
+router.get('/producto',Users.getAll)
 // Ruta para cambiar el estado de un usuario
 router.put('/Productos/:userId/state', Users.changeState);
 // Ruta para crear un nuevo usuario

@@ -604,7 +604,7 @@ const getAllMeasuresPromise = getAllMeasure();
               window.location.href = "http://localhost:3009/login";
               return;
           }
-          const response = await fetch("http://localhost:3009/productos", {
+          const response = await fetch("http://localhost:3009/producto", {
               headers: {
                   Authorization: `Bearer ${token}`
               }

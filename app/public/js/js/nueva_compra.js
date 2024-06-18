@@ -9,10 +9,10 @@ const obtenerToken = async () => {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
-        const respuesta = await fetch('http://localhost:3009/La_holandesa/usuario_aut', {
+        const respuesta = await fetch('http://localhost:3009/usuario_aut', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -95,11 +95,11 @@ formAgregarUsuario.addEventListener("submit", async function (event) {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
         // Enviar los datos al servidor para crear el nuevo usuario
-        const response = await fetch('http://localhost:3009/La_holandesa/create_proveedor', {
+        const response = await fetch('http://localhost:3009/create_proveedor', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -159,10 +159,10 @@ const getAllProveedor = async () => {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/proveedor", {
+        const response = await fetch("http://localhost:3009/proveedor", {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -190,10 +190,10 @@ const getAllProducto = async () => {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/productos", {
+        const response = await fetch("http://localhost:3009/producto", {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -268,12 +268,12 @@ form.addEventListener('submit', async function (event) {
     const token = localStorage.getItem("token");
     if (!token) {
       // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+      window.location.href = "http://localhost:3009/login";
       return; // Detener la ejecución del código
     }
     // Enviar los datos al servidor para crear el nuevo usuario
     const response = await fetch(
-      "http://localhost:3009/La_holandesa/busproveedor",
+      "http://localhost:3009/busproveedor",
       {
         method: "POST",
         headers: {
@@ -346,12 +346,12 @@ formulairo.addEventListener('submit', async function (event) {
     const token = localStorage.getItem("token");
     if (!token) {
       // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+      window.location.href = "http://localhost:3009/login";
       return; // Detener la ejecución del código
     }
     // Enviar los datos al servidor para crear el nuevo usuario
     const response = await fetch(
-      "http://localhost:3009/La_holandesa/busproducto",
+      "http://localhost:3009/busproducto",
       {
         method: "POST",
         headers: {
@@ -617,12 +617,12 @@ generarventa.addEventListener('submit', async function (event) {
     const token = localStorage.getItem("token");
     if (!token) {
       // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+      window.location.href = "http://localhost:3009/login";
       return; // Detener la ejecución del código
     }
     // Enviar los datos al servidor para crear el nuevo usuario
     const response = await fetch(
-      "http://localhost:3009/La_holandesa/genecompra",
+      "http://localhost:3009/genecompra",
       {
         method: "POST",
         headers: {
@@ -682,10 +682,10 @@ generarventa.addEventListener('submit', async function (event) {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/productos_stock", {
+        const response = await fetch("http://localhost:3009/productos_stock", {
             headers: {
                 Authorization: `Bearer ${token}`,
             }

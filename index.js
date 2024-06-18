@@ -59,6 +59,9 @@ app.use('/datatables', express.static(path.join(__dirname, 'node_modules/datatab
 // Ruta para sweetalert2
 app.use('/sweetalert2', express.static(path.join(__dirname, 'node_modules/sweetalert2/dist')));
 
+// Ruta para select2
+app.use('/select2', express.static(path.join(__dirname, 'node_modules/select2/dist')));
+
 // Importar y configurar las rutas
 const indexRoutes = require('./app/src/presentation/routes/index')
 const authRoutes = require('./app/src/presentation/routes/authRoutes')
@@ -69,6 +72,9 @@ const categoriaRoutes = require('./app/src/presentation/routes/categoriaRoutes')
 const productosRoutes = require('./app/src/presentation/routes/productosRoutes')
 const clienteRoutes = require('./app/src/presentation/routes/clienteRoutes')
 const ventaRoutes = require('./app/src/presentation/routes/ventaRoutes')
+const proveedorRoutes = require('./app/src/presentation/routes/proveedorRouter')
+const compraRoutes = require('./app/src/presentation/routes/compraRoutes')
+const perfilRoutes = require('./app/src/presentation/routes/perfilRoutes')
 
 
 
@@ -84,6 +90,9 @@ app.use(categoriaRoutes,authMiddleware);
 app.use(productosRoutes,authMiddleware);
 app.use(clienteRoutes,authMiddleware);
 app.use(ventaRoutes,authMiddleware);
+app.use(proveedorRoutes,authMiddleware);
+app.use(compraRoutes,authMiddleware);
+app.use(perfilRoutes,authMiddleware);
 
 
 //app.use('/auth', authRoutes);
