@@ -1,3 +1,13 @@
+const obtenerTokenre = () => {
+  // Hacer una solicitud HTTP al servidor para obtener el token
+  const token = localStorage.getItem("token");
+  if (!token) {
+    // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
+    window.location.href = "http://localhost:3009/login";
+    return; // Detener la ejecución del código
+  }
+  return token;
+};
 
 
 let userId = null; // Variable global para almacenar el ID del usuario
@@ -6,12 +16,7 @@ let userId = null; // Variable global para almacenar el ID del usuario
 const obtenerToken = async () => {
   try {
     // Hacer una solicitud HTTP al servidor para obtener el token
-    const token = localStorage.getItem("token");
-    if (!token) {
-      // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://localhost:3009/login";
-      return; // Detener la ejecución del código
-    }
+    const token = obtenerTokenre();
     const respuesta = await fetch('http://localhost:3009/usuario_aut', {
       method: 'GET',
       headers: {
@@ -135,12 +140,7 @@ formcanbiarcontra.addEventListener("submit", async function (event) {
 
       if (isConfirmed) {
         // Hacer una solicitud HTTP al servidor para obtener el token
-        const token = localStorage.getItem("token");
-        if (!token) {
-          // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-          window.location.href = "http://localhost:3009/login";
-          return; // Detener la ejecución del código
-        }
+        const token = obtenerTokenre();
         const response = await fetch(
             'http://localhost:3009/cambiar_contrasena',
             {
@@ -232,12 +232,7 @@ formcanbiarcontra.addEventListener("submit", async function (event) {
   const getAllProducto = async () => {
     try {
         // Verificar si el token está presente en el localStorage
-        const token = localStorage.getItem("token");
-        if (!token) {
-            // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://localhost:3009/login";
-            return; // Detener la ejecución del código
-        }
+        const token = obtenerTokenre();
         const response = await fetch("http://localhost:3009/productos_stock", {
             headers: {
                 Authorization: `Bearer ${token}`,

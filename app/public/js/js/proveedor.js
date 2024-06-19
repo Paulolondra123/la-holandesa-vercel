@@ -1,13 +1,19 @@
+const obtenerTokenre = () => {
+    // Hacer una solicitud HTTP al servidor para obtener el token
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
+      window.location.href = "http://localhost:3009/login";
+      return; // Detener la ejecución del código
+    }
+    return token;
+  };
+
 // Función para obtener el token del servidor
 const obtenerToken = async () => {
     try {
       // Hacer una solicitud HTTP al servidor para obtener el token
-      const token = localStorage.getItem("token");
-      if (!token) {
-        // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-        window.location.href = "http://localhost:3009/login";
-        return; // Detener la ejecución del código
-      }
+      const token = obtenerTokenre();
       const respuesta = await fetch('http://localhost:3009/usuario_aut', {
         method: 'GET',
         headers: {
@@ -93,12 +99,7 @@ formAgregarUsuario.addEventListener("submit", async function (event) {
 
     try {
         // Verificar si el token está presente en el localStorage
-        const token = localStorage.getItem("token");
-        if (!token) {
-            // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://localhost:3009/login";
-            return; // Detener la ejecución del código
-        }
+        const token = obtenerTokenre();
         // Enviar los datos al servidor para crear el nuevo usuario
         const response = await fetch('http://localhost:3009/create_proveedor', {
             method: 'POST',
@@ -269,12 +270,7 @@ const render = (data) => {
 const getAll = async () => {
     try {
         // Verificar si el token está presente en el localStorage
-        const token = localStorage.getItem("token");
-        if (!token) {
-            // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://localhost:3009/login";
-            return; // Detener la ejecución del código
-        }
+        const token = obtenerTokenre();
         const response = await fetch('http://localhost:3009/proveedor',{
             method: "GET",
             headers: {
@@ -409,12 +405,7 @@ const saveChanges = async (id_proveedor, valoresOriginales) => {
 
         if (isConfirmed) {
             // Verificar si el token está presente en el localStorage
-            const token = localStorage.getItem("token");
-            if (!token) {
-                // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-                window.location.href = "http://localhost:3009/login";
-                return; // Detener la ejecución del código
-            }
+            const token = obtenerTokenre();
             const response = await fetch(`http://localhost:3009/proveedor/${id_proveedor}`, {
                 method: 'PUT',
                 headers: {
@@ -512,12 +503,7 @@ const changeState = async (userId, currentState) => {
 
         if (isConfirmed) {
             // Verificar si el token está presente en el localStorage
-            const token = localStorage.getItem("token");
-            if (!token) {
-                // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-                window.location.href = "http://localhost:3009/login";
-                return; // Detener la ejecución del código
-            }
+            const token = obtenerTokenre();
             const response = await fetch(`http://localhost:3009/proveedor/${userId}/state`, {
                 method: 'PUT',
                 headers: {
@@ -589,12 +575,7 @@ const deleteUser = async (userId) => {
 
         if (isConfirmed) {
             // Verificar si el token está presente en el localStorage
-            const token = localStorage.getItem("token");
-            if (!token) {
-                // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-                window.location.href = "http://localhost:3009/login";
-                return; // Detener la ejecución del código
-            }
+            const token = obtenerTokenre();
             const response = await fetch(`http://localhost:3009/proveedor_delete/${userId}`, {
                 method: 'DELETE',
                 headers:{
@@ -667,12 +648,7 @@ getAll()
   const getAllProducto = async () => {
     try {
         // Verificar si el token está presente en el localStorage
-        const token = localStorage.getItem("token");
-        if (!token) {
-            // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://localhost:3009/login";
-            return; // Detener la ejecución del código
-        }
+        const token = obtenerTokenre();
         const response = await fetch("http://localhost:3009/productos_stock", {
             headers: {
                 Authorization: `Bearer ${token}`,

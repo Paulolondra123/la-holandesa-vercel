@@ -1,13 +1,19 @@
+const obtenerTokenre = () => {
+  // Hacer una solicitud HTTP al servidor para obtener el token
+  const token = localStorage.getItem("token");
+  if (!token) {
+    // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
+    window.location.href = "http://localhost:3009/login";
+    return; // Detener la ejecución del código
+  }
+  return token;
+};
+
 // Función para obtener el token del servidor
 const obtenerToken = async () => {
   try {
     // Hacer una solicitud HTTP al servidor para obtener el token
-    const token = localStorage.getItem("token");
-    if (!token) {
-      // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://localhost:3009/login";
-      return; // Detener la ejecución del código
-    }
+    const token = obtenerTokenre();
     const respuesta = await fetch('http://localhost:3009/usuario_aut', {
       method: 'GET',
       headers: {
@@ -74,12 +80,7 @@ function mayus(e) {
   const getAllCategories = async () => {
     try {
       // Verificar si el token está presente en el localStorage
-      const token = localStorage.getItem("token");
-      if (!token) {
-        // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-        window.location.href = "http://localhost:3009/login";
-        return; // Detener la ejecución del código
-      }
+      const token = obtenerTokenre();
       const response = await fetch("http://localhost:3009/categoria",{
         headers:{
           Authorization: `Bearer ${token}`,
@@ -104,12 +105,7 @@ function mayus(e) {
   const getAllMeasures = async () => {
     try {
       // Verificar si el token está presente en el localStorage
-      const token = localStorage.getItem("token");
-      if (!token) {
-        // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-        window.location.href = "http://localhost:3009/login";
-        return; // Detener la ejecución del código
-      }
+      const token = obtenerTokenre();
       const response = await fetch("http://localhost:3009/medida",{
         headers:{
           Authorization: `Bearer ${token}`,
@@ -179,12 +175,7 @@ function mayus(e) {
 
     try {
       // Verificar si el token está presente en el localStorage
-      const token = localStorage.getItem("token");
-      if (!token) {
-        // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-        window.location.href = "http://localhost:3009/login";
-        return; // Detener la ejecución del código
-      }
+      const token = obtenerTokenre();
       // Enviar los datos al servidor para crear el nuevo usuario
       const response = await fetch(
         "http://localhost:3009/create_Productos",
@@ -255,11 +246,7 @@ function mayus(e) {
 
   const getAllCategorie = async () => {
     try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            window.location.href = "http://localhost:3009/login";
-            return {};
-        }
+      const token = obtenerTokenre();
         const response = await fetch("http://localhost:3009/categoria", {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -286,11 +273,7 @@ function mayus(e) {
 
 const getAllMeasure = async () => {
     try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            window.location.href = "http://localhost:3009/login";
-            return {};
-        }
+      const token = obtenerTokenre();
         const response = await fetch("http://localhost:3009/medida", {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -599,11 +582,7 @@ const getAllMeasuresPromise = getAllMeasure();
   
   const getAll = async () => {
       try {
-          const token = localStorage.getItem("token");
-          if (!token) {
-              window.location.href = "http://localhost:3009/login";
-              return;
-          }
+        const token = obtenerTokenre();
           const response = await fetch("http://localhost:3009/producto", {
               headers: {
                   Authorization: `Bearer ${token}`
@@ -746,12 +725,7 @@ const getAllMeasuresPromise = getAllMeasure();
       });
       if (isConfirmed) {
         // Verificar si el token está presente en el localStorage
-        const token = localStorage.getItem("token");
-        if (!token) {
-          // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-          window.location.href = "http://localhost:3009/login";
-          return; // Detener la ejecución del código
-        }
+        const token = obtenerTokenre();
         const response = await fetch(
           `http://localhost:3009/Productos/${id_producto}`,
           {
@@ -842,12 +816,7 @@ const getAllMeasuresPromise = getAllMeasure();
   
       if (isConfirmed) {
         // Verificar si el token está presente en el localStorage
-        const token = localStorage.getItem("token");
-        if (!token) {
-          // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-          window.location.href = "http://localhost:3009/login";
-          return; // Detener la ejecución del código
-        }
+        const token = obtenerTokenre();
         const response = await fetch(
           `http://localhost:3009/Productos/${userId}/state`,
           {
@@ -920,12 +889,7 @@ const getAllMeasuresPromise = getAllMeasure();
   
       if (isConfirmed) {
         // Verificar si el token está presente en el localStorage
-        const token = localStorage.getItem("token");
-        if (!token) {
-          // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-          window.location.href = "http://localhost:3009/login";
-          return; // Detener la ejecución del código
-        }
+        const token = obtenerTokenre();
         const response = await fetch(
           `http://localhost:3009/Productos_delete/${userId}`,
           {
@@ -999,12 +963,7 @@ const getAllMeasuresPromise = getAllMeasure();
   const getAllProducto = async () => {
     try {
         // Verificar si el token está presente en el localStorage
-        const token = localStorage.getItem("token");
-        if (!token) {
-            // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://localhost:3009/login";
-            return; // Detener la ejecución del código
-        }
+        const token = obtenerTokenre();
         const response = await fetch("http://localhost:3009/productos_stock", {
             headers: {
                 Authorization: `Bearer ${token}`,

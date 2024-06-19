@@ -1,14 +1,23 @@
+const baseURL = 'http://localhost:3009';
+
+
+const obtenerTokenre = () => {
+    // Hacer una solicitud HTTP al servidor para obtener el token
+    const token = localStorage.getItem("token");
+    if (!token) {
+      // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
+      window.location.href = `${baseURL}/login`;
+      return; // Detener la ejecución del código
+    }
+    return token;
+  };
+
 // Función para obtener el token del servidor
 const obtenerToken = async () => {
     try {
       // Hacer una solicitud HTTP al servidor para obtener el token
-      const token = localStorage.getItem("token");
-      if (!token) {
-        // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-        window.location.href = "http://localhost:3009/login";
-        return; // Detener la ejecución del código
-      }
-      const respuesta = await fetch('http://localhost:3009/usuario_aut', {
+      const token = obtenerTokenre();
+      const respuesta = await fetch(`${baseURL}/usuario_aut`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -73,12 +82,8 @@ const obtenerToken = async () => {
   
   const getAllCliente = async () => {
     try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            window.location.href = "http://localhost:3009/login";
-            return {};
-        }
-        const response = await fetch("http://localhost:3009/cliente", {
+        const token = obtenerTokenre();
+        const response = await fetch(`${baseURL}/cliente`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -106,12 +111,8 @@ const obtenerToken = async () => {
 
 const getAllUsuario = async () => {
     try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-            window.location.href = "http://localhost:3009/login";
-            return {};
-        }
-        const response = await fetch("http://localhost:3009/Users", {
+        const token = obtenerTokenre();
+        const response = await fetch(`${baseURL}/Users`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -255,12 +256,8 @@ const getAllUsuarioPromise = getAllUsuario();
   
   const getAll = async () => {
       try {
-          const token = localStorage.getItem("token");
-          if (!token) {
-              window.location.href = "http://localhost:3009/login";
-              return;
-          }
-          const response = await fetch("http://localhost:3009/venta", {
+        const token = obtenerTokenre();
+          const response = await fetch(`${baseURL}/venta`, {
               headers: {
                   Authorization: `Bearer ${token}`
               }
@@ -316,13 +313,8 @@ const getAllUsuarioPromise = getAllUsuario();
   const getAllProducto = async () => {
     try {
         // Verificar si el token está presente en el localStorage
-        const token = localStorage.getItem("token");
-        if (!token) {
-            // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://localhost:3009/login";
-            return; // Detener la ejecución del código
-        }
-        const response = await fetch("http://localhost:3009/productos_stock", {
+        const token = obtenerTokenre();
+        const response = await fetch(`${baseURL}/productos_stock`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
