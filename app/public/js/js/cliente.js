@@ -1,9 +1,11 @@
+const baseURL = 'http://localhost:3009';
+
 const obtenerTokenre = () => {
     // Hacer una solicitud HTTP al servidor para obtener el token
     const token = localStorage.getItem("token");
     if (!token) {
       // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://localhost:3009/login";
+      window.location.href = `${baseURL}/login`;
       return; // Detener la ejecución del código
     }
     return token;
@@ -14,7 +16,7 @@ const obtenerToken = async () => {
     try {
       // Hacer una solicitud HTTP al servidor para obtener el token
       const token = obtenerTokenre();
-      const respuesta = await fetch('http://localhost:3009/usuario_aut', {
+      const respuesta = await fetch(`${baseURL}/usuario_aut`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +102,7 @@ formAgregarCliente.addEventListener("submit", async function (event) {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
         // Enviar los datos al servidor para crear el nuevo usuario
-        const response = await fetch('http://localhost:3009/create_cliente', {
+        const response = await fetch(`${baseURL}/create_cliente`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -263,7 +265,7 @@ const getAll = async () => {
     try {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
-        const response = await fetch('http://localhost:3009/cliente',{
+        const response = await fetch(`${baseURL}/cliente`,{
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -398,7 +400,7 @@ const saveChanges = async (id_cliente, valoresOriginales) => {
         if (isConfirmed) {
             // Verificar si el token está presente en el localStorage
             const token = obtenerTokenre();
-            const response = await fetch(`http://localhost:3009/cliente/${id_cliente}`, {
+            const response = await fetch(`${baseURL}/cliente/${id_cliente}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -496,7 +498,7 @@ const changeState = async (userId, currentState) => {
         if (isConfirmed) {
             // Verificar si el token está presente en el localStorage
             const token = obtenerTokenre();
-            const response = await fetch(`http://localhost:3009/cliente/${userId}/state`, {
+            const response = await fetch(`${baseURL}/cliente/${userId}/state`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -568,7 +570,7 @@ const deleteUser = async (userId) => {
         if (isConfirmed) {
             // Verificar si el token está presente en el localStorage
             const token = obtenerTokenre();
-            const response = await fetch(`http://localhost:3009/cliente_delete/${userId}`, {
+            const response = await fetch(`${baseURL}/cliente_delete/${userId}`, {
                 method: 'DELETE',
                 headers:{
                     Authorization: `Bearer ${token}`,
@@ -643,7 +645,7 @@ getAll()
     try {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
-        const response = await fetch("http://localhost:3009/productos_stock", {
+        const response = await fetch(`${baseURL}/productos_stock`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }

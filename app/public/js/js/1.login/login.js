@@ -1,3 +1,5 @@
+const baseURL = 'http://localhost:3009';
+
 let userId = null; // Variable global para almacenar el ID del usuario
 
 // login.js
@@ -8,7 +10,7 @@ form_login.addEventListener('submit', async (e) => {
     const password = document.getElementById('password').value;
 
     try {
-        const response = await fetch('http://localhost:3009/logins', {
+        const response = await fetch(`${baseURL}/logins`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -53,10 +55,10 @@ const verificarprimerlogin = async () => {
     try {
         const token = localStorage.getItem("token");
         if (!token) {
-          window.location.href = "http://localhost:3009/login";
+          window.location.href = `${baseURL}/login`;
           return;
         }
-        const response = await fetch('http://localhost:3009/verify-auth', {
+        const response = await fetch(`${baseURL}/verify-auth`, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -78,11 +80,11 @@ const verificarprimerlogin = async () => {
                 await verificarAutenticacion();
             }
         } else {
-            window.location.href = "http://localhost:3009/login";
+            window.location.href = `${baseURL}/login`;
         }
     } catch (error) {
         console.error("Error al verificar autenticación:", error);
-        window.location.href = "http://localhost:3009/login";
+        window.location.href = `${baseURL}/login`;
     }
 };
 
@@ -92,10 +94,10 @@ const verificarAutenticacion = async () => {
     try {
         const token = localStorage.getItem("token");
         if (!token) {
-          window.location.href = "http://localhost:3009/login";
+          window.location.href = `${baseURL}/login`;
           return;
         }
-        const response = await fetch('http://localhost:3009/verify-auth', {
+        const response = await fetch(`${baseURL}/verify-auth`, {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -116,7 +118,7 @@ const verificarAutenticacion = async () => {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                window.location.href = "http://localhost:3009/vendedor";
+                window.location.href = `${baseURL}/vendedor`;
             } else if (perfil === 'ADMINISTRADOR') {
                 await Swal.fire({
                     title: "Logueado correctamente!",
@@ -124,12 +126,12 @@ const verificarAutenticacion = async () => {
                     timer: 1500,
                     showConfirmButton: false
                 });
-                window.location.href = "http://localhost:3009";
+                window.location.href = `${baseURL}`;
             } else {
-                window.location.href = "http://localhost:3009/login";
+                window.location.href = `${baseURL}/login`;
             }
         } else {
-            window.location.href = "http://localhost:3009/login";
+            window.location.href = `${baseURL}/login`;
         }
     } catch (error) {
         console.error("Error al verificar autenticación:", error);
@@ -173,11 +175,11 @@ formcanbiarcontra.addEventListener("submit", async function (event) {
       if (isConfirmed) {
         const token = localStorage.getItem("token");
         if (!token) {
-          window.location.href = "http://localhost:3009/login";
+          window.location.href = `${baseURL}/login`;
           return;
         }
         const response = await fetch(
-            'http://localhost:3009/cambiar_contrasena',
+            `${baseURL}/cambiar_contrasena`,
             {
                 method: 'PUT',
                 headers: {

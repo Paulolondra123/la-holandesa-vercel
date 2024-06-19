@@ -1,3 +1,5 @@
+const baseURL = 'http://localhost:3009';
+
 let idcliente = ''
 let idproducto = ''
 let datosUsuario = null; // Declarar la variable en el ámbito global
@@ -6,7 +8,7 @@ const obtenerTokenre = () => {
   const token = localStorage.getItem("token");
   if (!token) {
     // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-    window.location.href = "http://localhost:3009/login";
+    window.location.href = `${baseURL}/login`;
     return; // Detener la ejecución del código
   }
   return token;
@@ -16,7 +18,7 @@ const obtenerToken = async () => {
     try {
         // Hacer una solicitud HTTP al servidor para obtener el token
         const token = obtenerTokenre();
-        const respuesta = await fetch('http://localhost:3009/usuario_aut', {
+        const respuesta = await fetch(`${baseURL}/usuario_aut`, {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -95,7 +97,7 @@ formAgregarCliente.addEventListener("submit", async function (event) {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
         // Enviar los datos al servidor para crear el nuevo usuario
-        const response = await fetch('http://localhost:3009/create_cliente', {
+        const response = await fetch(`${baseURL}/create_cliente`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -152,7 +154,7 @@ const getAllCliente = async () => {
     try {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
-        const response = await fetch("http://localhost:3009/cliente", {
+        const response = await fetch(`${baseURL}/cliente`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -178,7 +180,7 @@ const getAllProducto = async () => {
     try {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
-        const response = await fetch("http://localhost:3009/producto", {
+        const response = await fetch(`${baseURL}/producto`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -263,7 +265,7 @@ form.addEventListener('submit', async function (event) {
     const token = obtenerTokenre();
     // Enviar los datos al servidor para crear el nuevo usuario
     const response = await fetch(
-      "http://localhost:3009/buscliente",
+      `${baseURL}/buscliente`,
       {
         method: "POST",
         headers: {
@@ -335,7 +337,7 @@ formulairo.addEventListener('submit', async function (event) {
     const token = obtenerTokenre();
     // Enviar los datos al servidor para crear el nuevo usuario
     const response = await fetch(
-      "http://localhost:3009/busproducto",
+      `${baseURL}/busproducto`,
       {
         method: "POST",
         headers: {
@@ -600,7 +602,7 @@ generarventa.addEventListener('submit', async function (event) {
     const token = obtenerTokenre();
     // Enviar los datos al servidor para crear el nuevo usuario
     const response = await fetch(
-      "http://localhost:3009/geneventa",
+      `${baseURL}/geneventa`,
       {
         method: "POST",
         headers: {
@@ -668,7 +670,7 @@ generarventa.addEventListener('submit', async function (event) {
     try {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
-        const response = await fetch("http://localhost:3009/productos_stock", {
+        const response = await fetch(`${baseURL}/productos_stock`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }

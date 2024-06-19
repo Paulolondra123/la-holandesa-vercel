@@ -1,9 +1,11 @@
+const baseURL = 'http://localhost:3009';
+
 const obtenerTokenre = () => {
   // Hacer una solicitud HTTP al servidor para obtener el token
   const token = localStorage.getItem("token");
   if (!token) {
     // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-    window.location.href = "http://localhost:3009/login";
+    window.location.href = `${baseURL}/login`;
     return; // Detener la ejecución del código
   }
   return token;
@@ -14,7 +16,7 @@ const obtenerToken = async () => {
   try {
     // Hacer una solicitud HTTP al servidor para obtener el token
     const token = obtenerTokenre();
-    const respuesta = await fetch('http://localhost:3009/usuario_aut', {
+    const respuesta = await fetch(`${baseURL}/usuario_aut`, {
       method: 'GET',
       headers: {
         "Content-Type": "application/json",
@@ -81,7 +83,7 @@ function mayus(e) {
     try {
       // Verificar si el token está presente en el localStorage
       const token = obtenerTokenre();
-      const response = await fetch("http://localhost:3009/categoria",{
+      const response = await fetch(`${baseURL}/categoria`,{
         headers:{
           Authorization: `Bearer ${token}`,
         }
@@ -106,7 +108,7 @@ function mayus(e) {
     try {
       // Verificar si el token está presente en el localStorage
       const token = obtenerTokenre();
-      const response = await fetch("http://localhost:3009/medida",{
+      const response = await fetch(`${baseURL}/medida`,{
         headers:{
           Authorization: `Bearer ${token}`,
         }
@@ -178,7 +180,7 @@ function mayus(e) {
       const token = obtenerTokenre();
       // Enviar los datos al servidor para crear el nuevo usuario
       const response = await fetch(
-        "http://localhost:3009/create_Productos",
+        `${baseURL}/create_Productos`,
         {
           method: "POST",
           headers: {
@@ -247,7 +249,7 @@ function mayus(e) {
   const getAllCategorie = async () => {
     try {
       const token = obtenerTokenre();
-        const response = await fetch("http://localhost:3009/categoria", {
+        const response = await fetch(`${baseURL}/categoria`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -274,7 +276,7 @@ function mayus(e) {
 const getAllMeasure = async () => {
     try {
       const token = obtenerTokenre();
-        const response = await fetch("http://localhost:3009/medida", {
+        const response = await fetch(`${baseURL}/medida`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -475,7 +477,7 @@ const getAllMeasuresPromise = getAllMeasure();
           window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
           return; // Detener la ejecución del código
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/productos",{
+        const response = await fetch(`${baseURL}/La_holandesa/productos`,{
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -583,7 +585,7 @@ const getAllMeasuresPromise = getAllMeasure();
   const getAll = async () => {
       try {
         const token = obtenerTokenre();
-          const response = await fetch("http://localhost:3009/producto", {
+          const response = await fetch(`${baseURL}/producto`, {
               headers: {
                   Authorization: `Bearer ${token}`
               }
@@ -727,7 +729,7 @@ const getAllMeasuresPromise = getAllMeasure();
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
         const response = await fetch(
-          `http://localhost:3009/Productos/${id_producto}`,
+          `${baseURL}/Productos/${id_producto}`,
           {
             method: "PUT",
             headers: {
@@ -818,7 +820,7 @@ const getAllMeasuresPromise = getAllMeasure();
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
         const response = await fetch(
-          `http://localhost:3009/Productos/${userId}/state`,
+          `${baseURL}/Productos/${userId}/state`,
           {
             method: "PUT",
             headers: {
@@ -891,7 +893,7 @@ const getAllMeasuresPromise = getAllMeasure();
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
         const response = await fetch(
-          `http://localhost:3009/Productos_delete/${userId}`,
+          `${baseURL}/Productos_delete/${userId}`,
           {
             method: "DELETE",
             headers:{
@@ -964,7 +966,7 @@ const getAllMeasuresPromise = getAllMeasure();
     try {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
-        const response = await fetch("http://localhost:3009/productos_stock", {
+        const response = await fetch(`${baseURL}/productos_stock`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }

@@ -1,9 +1,11 @@
+const baseURL = 'http://localhost:3009';
+
 const obtenerTokenre = () => {
     // Hacer una solicitud HTTP al servidor para obtener el token
     const token = localStorage.getItem("token");
     if (!token) {
       // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://localhost:3009/login";
+      window.location.href = `${baseURL}/login`;
       return; // Detener la ejecución del código
     }
     return token;
@@ -14,7 +16,7 @@ const obtenerToken = async () => {
     try {
       // Hacer una solicitud HTTP al servidor para obtener el token
       const token = obtenerTokenre();
-      const respuesta = await fetch('http://localhost:3009/usuario_aut', {
+      const respuesta = await fetch(`${baseURL}/usuario_aut`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -81,7 +83,7 @@ const obtenerToken = async () => {
     try {
         const token = obtenerTokenre();
 
-        const response = await fetch("http://localhost:3009/proveedor", {
+        const response = await fetch(`${baseURL}/proveedor`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -111,7 +113,7 @@ const getAllUsuario = async () => {
     try {
         const token = obtenerTokenre();
 
-        const response = await fetch("http://localhost:3009/Users", {
+        const response = await fetch(`${baseURL}/Users`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -258,7 +260,7 @@ const getAllUsuarioPromise = getAllUsuario();
       try {
         const token = obtenerTokenre();
 
-          const response = await fetch("http://localhost:3009/compra", {
+          const response = await fetch(`${baseURL}/compra`, {
               headers: {
                   Authorization: `Bearer ${token}`
               }
@@ -316,7 +318,7 @@ const getAllUsuarioPromise = getAllUsuario();
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
 
-        const response = await fetch("http://localhost:3009/productos_stock", {
+        const response = await fetch(`${baseURL}/productos_stock`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }

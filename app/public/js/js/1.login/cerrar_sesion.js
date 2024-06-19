@@ -1,3 +1,5 @@
+const baseURL = 'http://localhost:3009';
+
 // Agrega un evento de clic al botón de cerrar sesión
 const logoutButton = document.getElementById('logout-session');
 logoutButton.addEventListener('click', async (e) => {
@@ -5,7 +7,7 @@ logoutButton.addEventListener('click', async (e) => {
     console.log("hisiste click")
     try {
         // Envía una solicitud al servidor para cerrar la sesión
-        const response = await fetch('http://localhost:3009/logout', {
+        const response = await fetch(`${baseURL}/logout`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('token')}` // Incluye el token en el encabezado de autorización
@@ -16,7 +18,7 @@ logoutButton.addEventListener('click', async (e) => {
             // Elimina el token del almacenamiento local
             localStorage.removeItem('token');
             // Redirige al usuario a la página de inicio de sesión
-            window.location.href = 'http://localhost:3009/login';
+            window.location.href = `${baseURL}/login`;
         } else {
             const errorData = await response.json();
             console.error('Error al cerrar sesión:', errorData.error);
