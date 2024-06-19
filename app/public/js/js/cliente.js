@@ -740,7 +740,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
   
       productosBajoStock.forEach(producto => {
         const notificationItem = document.createElement('a');
-        notificationItem.href = "productos.html";
+        notificationItem.href = "/productos";
         notificationItem.className = "dropdown-item";
         const timeElapsed = document.createElement('small');
   

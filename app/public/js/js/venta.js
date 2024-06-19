@@ -120,7 +120,6 @@ const getAllUsuario = async () => {
             throw new Error("Error en la solicitud");
         }
         const result = await response.json();
-        console.log(result);
 
         if (result.error) {
             console.error("Error:", result.message);
@@ -396,7 +395,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
   
       productosBajoStock.forEach(producto => {
         const notificationItem = document.createElement('a');
-        notificationItem.href = "productos.html";
+        notificationItem.href = "/productos";
         notificationItem.className = "dropdown-item";
         const timeElapsed = document.createElement('small');
   

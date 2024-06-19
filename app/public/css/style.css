@@ -70,6 +70,7 @@ input[readonly] {
     margin: 0;
     position: relative;
     vertical-align: middle;
+    /* width: 100%; */
 }
 
 .select2-container .select2-selection--single {
@@ -79,8 +80,7 @@ input[readonly] {
     height: 38px; /* Mantén la altura que ajustaste */
     user-select: none;
     -webkit-user-select: none;
-    display: flex;
-    align-items: center; /* Centrar verticalmente */
+    width: 100%;
 }
 
 .select2-container .select2-selection--single .select2-selection__rendered {
@@ -108,10 +108,11 @@ input[readonly] {
 
 /* Placeholder alineado a la izquierda */
 .select2-container--default .select2-selection--single .select2-selection__placeholder {
-    color: #999;
+    color: #a81f1f;
     text-align: left; /* Alinear horizontalmente a la izquierda */
     flex: 1; /* Asegura que el texto tome todo el espacio disponible */
     margin-top: 4px; /* Ajuste para bajar un poco el texto verticalmente */
+    width: 100%;
 }
 
 

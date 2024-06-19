@@ -17,7 +17,8 @@ router.get('/Clientes', (req, res) => {
 });
 
 // Ruta de venta
-router.get('/Ventas', (req, res) => {
-    res.render('vendedor/ventas',{title: 'Ventas⛺⛺⛺'});
+router.get('/Perfil', (req, res) => {
+    res.render('vendedor/perfil',{title: 'Perfil🔑'});
 });
+
 module.exports = router;

@@ -217,38 +217,49 @@ const getAllProducto = async () => {
 
 
 const populateSelect = (selectElement, options, valueFieldName, textFieldName) => {
-    selectElement.innerHTML = '<option value="">Seleccione una opción</option>';
-    options.forEach(option => {
-        const optionElement = document.createElement("option");
-        optionElement.value = option[valueFieldName];
-        optionElement.textContent = option[textFieldName];
-        selectElement.appendChild(optionElement);
-    });
+  selectElement.innerHTML = '<option value="">Seleccione una opción</option>';
+  options.forEach(option => {
+      const optionElement = document.createElement("option");
+      optionElement.value = option[valueFieldName];
+      optionElement.textContent = option[textFieldName];
+      selectElement.appendChild(optionElement);
+  });
+};
+
+const initializeSelect2 = () => {
+  $('#razonsocial').select2({with: 'resolve'});
+  $('#producto').select2({with: 'resolve'});
+};
+
+const adjustSelect2Width = () => {
+  $('#razonsocial').select2('destroy').select2({ width: '100%' });
+  $('#producto').select2('destroy').select2({ width: '100%' });
 };
 
 const populateFormSelects = async () => {
-    const razon_socialSelect = document.getElementById("razonsocial");
-    const productoSelect = document.getElementById("producto");
+  const razon_socialSelect = document.getElementById("razonsocial");
+  const productoSelect = document.getElementById("producto");
 
-    try {
-        const razonsocial = await getAllProveedor(); // Suponiendo que esta función devuelve un array de objetos con id_proveedor y razon_social
-        const producto = await getAllProducto(); // Suponiendo lo mismo para los productos
+  try {
+      const razonsocial = await getAllProveedor(); // Suponiendo que esta función devuelve un array de objetos con id_proveedor y razon_social
+      const producto = await getAllProducto(); // Suponiendo lo mismo para los productos
 
-        populateSelect(razon_socialSelect, razonsocial, "razon_social", "razon_social");
-        populateSelect(productoSelect, producto, "nombre_producto", "nombre_producto");
+      populateSelect(razon_socialSelect, razonsocial, "razon_social", "razon_social");
+      populateSelect(productoSelect, producto, "nombre_producto", "nombre_producto");
 
-        // Inicializa Select2 en los selectores después de haber poblado las opciones
-        $(document).ready(function () {
-            $('#razonsocial').select2();
-            $('#producto').select2();
-        });
-    } catch (error) {
-        console.error("Error al poblar los select:", error);
-    }
+      // Inicializa Select2 después de haber poblado las opciones
+      initializeSelect2();
+
+      // Ajustar Select2 al cambiar el tamaño de la ventana
+      window.addEventListener('resize', adjustSelect2Width);
+  } catch (error) {
+      console.error("Error al poblar los select:", error);
+  }
 };
 
 // Llama a esta función para poblar los select cuando la página se carga
-populateFormSelects();
+document.addEventListener('DOMContentLoaded', populateFormSelects);
+
 
 
 
@@ -758,7 +769,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
   
       productosBajoStock.forEach(producto => {
         const notificationItem = document.createElement('a');
-        notificationItem.href = "productos.html";
+        notificationItem.href = "/productos";
         notificationItem.className = "dropdown-item";
         const timeElapsed = document.createElement('small');
   

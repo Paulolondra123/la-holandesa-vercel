@@ -9,10 +9,10 @@ const obtenerToken = async () => {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
-        const respuesta = await fetch('http://localhost:3009/La_holandesa/usuario_aut', {
+        const respuesta = await fetch('http://localhost:3009/usuario_aut', {
             method: 'GET',
             headers: {
                 "Content-Type": "application/json",
@@ -92,11 +92,11 @@ formAgregarCliente.addEventListener("submit", async function (event) {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
         // Enviar los datos al servidor para crear el nuevo usuario
-        const response = await fetch('http://localhost:3009/La_holandesa/create_cliente', {
+        const response = await fetch('http://localhost:3009/create_cliente', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -155,10 +155,10 @@ const getAllCliente = async () => {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/cliente", {
+        const response = await fetch("http://localhost:3009/cliente", {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -186,10 +186,10 @@ const getAllProducto = async () => {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/productos", {
+        const response = await fetch("http://localhost:3009/producto", {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -222,6 +222,16 @@ const populateSelect = (selectElement, options, valueFieldName, textFieldName) =
     });
 };
 
+const initializeSelect2 = () => {
+  $('#nitcliente').select2({with: 'resolve'});
+  $('#producto').select2({with: 'resolve'});
+};
+
+const adjustSelect2Width = () => {
+  $('#nitcliente').select2('destroy').select2({ width: '100%' });
+  $('#producto').select2('destroy').select2({ width: '100%' });
+};
+
 const populateFormSelects = async () => {
     const nitSelect = document.getElementById("nitcliente");
     const productoSelect = document.getElementById("producto");
@@ -233,11 +243,11 @@ const populateFormSelects = async () => {
         populateSelect(nitSelect, nit, "nit", "nit");
         populateSelect(productoSelect, producto, "nombre_producto", "nombre_producto");
 
-        // Inicializa Select2 en los selectores después de haber poblado las opciones
-        $(document).ready(function () {
-            $('#nitcliente').select2();
-            $('#producto').select2();
-        });
+        // Inicializa Select2 después de haber poblado las opciones
+        initializeSelect2();
+
+        // Ajustar Select2 al cambiar el tamaño de la ventana
+        window.addEventListener('resize', adjustSelect2Width);
     } catch (error) {
         console.error("Error al poblar los select:", error);
     }
@@ -264,12 +274,12 @@ form.addEventListener('submit', async function (event) {
     const token = localStorage.getItem("token");
     if (!token) {
       // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+      window.location.href = "http://localhost:3009/login";
       return; // Detener la ejecución del código
     }
     // Enviar los datos al servidor para crear el nuevo usuario
     const response = await fetch(
-      "http://localhost:3009/La_holandesa/buscliente",
+      "http://localhost:3009/buscliente",
       {
         method: "POST",
         headers: {
@@ -341,12 +351,12 @@ formulairo.addEventListener('submit', async function (event) {
     const token = localStorage.getItem("token");
     if (!token) {
       // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+      window.location.href = "http://localhost:3009/login";
       return; // Detener la ejecución del código
     }
     // Enviar los datos al servidor para crear el nuevo usuario
     const response = await fetch(
-      "http://localhost:3009/La_holandesa/busproducto",
+      "http://localhost:3009/busproducto",
       {
         method: "POST",
         headers: {
@@ -611,12 +621,12 @@ generarventa.addEventListener('submit', async function (event) {
     const token = localStorage.getItem("token");
     if (!token) {
       // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-      window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+      window.location.href = "http://localhost:3009/login";
       return; // Detener la ejecución del código
     }
     // Enviar los datos al servidor para crear el nuevo usuario
     const response = await fetch(
-      "http://localhost:3009/La_holandesa/geneventa",
+      "http://localhost:3009/geneventa",
       {
         method: "POST",
         headers: {
@@ -686,10 +696,10 @@ generarventa.addEventListener('submit', async function (event) {
         const token = localStorage.getItem("token");
         if (!token) {
             // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-            window.location.href = "http://127.0.0.1:5500/frond/Z.administrador/login.html";
+            window.location.href = "http://localhost:3009/login";
             return; // Detener la ejecución del código
         }
-        const response = await fetch("http://localhost:3009/La_holandesa/productos_stock", {
+        const response = await fetch("http://localhost:3009/productos_stock", {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
@@ -763,7 +773,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
     productosBajoStock.forEach(producto => {
       const notificationItem = document.createElement('a');
-      notificationItem.href = "productos.html";
+      notificationItem.href = "/productos";
       notificationItem.className = "dropdown-item";
       const timeElapsed = document.createElement('small');
 
