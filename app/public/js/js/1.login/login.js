@@ -1,4 +1,6 @@
-const baseURL = 'http://localhost:3009';
+// tokenHelper.js
+import  baseURL  from '../../../../src/shared/constants/baseURL';
+
 
 let userId = null; // Variable global para almacenar el ID del usuario
 
@@ -179,7 +181,7 @@ formcanbiarcontra.addEventListener("submit", async function (event) {
           return;
         }
         const response = await fetch(
-            `${baseURL}/cambiar_contrasena `,
+            `${baseURL}/cambiar_contrasena`,
             {
                 method: 'PUT',
                 headers: {
