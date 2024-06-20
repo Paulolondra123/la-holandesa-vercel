@@ -184,7 +184,7 @@ const getAllUsuarioPromise = getAllUsuario();
             <td>${formattedDate}</td>
             <td>
                 <div class="btn-group">
-                    <button type="button" class="btn btn btn-outline-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" id="imprimir" class="btn btn btn-outline-danger"  aria-expanded="false">
                         Imprimir
                     </button>
                 </div>
@@ -429,3 +429,9 @@ document.addEventListener('DOMContentLoaded', async (event) => {
   });
 
   //*************************************notificaciones**************************************/
+
+
+
+  document.getElementById('imprimir').addEventListener('click', function() {
+    window.location.href = `${baseURL}}/downloadpdf`;
+});

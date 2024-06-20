@@ -76,6 +76,7 @@ const ventaRoutes = require('./app/src/presentation/routes/ventaRoutes')
 const proveedorRoutes = require('./app/src/presentation/routes/proveedorRouter')
 const compraRoutes = require('./app/src/presentation/routes/compraRoutes')
 const perfilRoutes = require('./app/src/presentation/routes/perfilRoutes')
+const downloadpdf = require('./app/src/presentation/routes/imprimir')
 
 
 
@@ -94,6 +95,7 @@ app.use(ventaRoutes,authMiddleware);
 app.use(proveedorRoutes,authMiddleware);
 app.use(compraRoutes,authMiddleware);
 app.use(perfilRoutes,authMiddleware);
+app.use(downloadpdf);
 
 
 //app.use('/auth', authRoutes);
