@@ -179,7 +179,7 @@ formcanbiarcontra.addEventListener("submit", async function (event) {
           return;
         }
         const response = await fetch(
-            `${baseURL}/cambiar_contrasena`,
+            `${baseURL}/cambiar_contrasena `,
             {
                 method: 'PUT',
                 headers: {
