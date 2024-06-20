@@ -1,11 +1,11 @@
-const baseURL = 'http://localhost:3009';
+const baseURL3 = 'http://localhost:3009';
 
 const obtenerTokenre = () => {
   // Hacer una solicitud HTTP al servidor para obtener el token
   const token = localStorage.getItem("token");
   if (!token) {
     // Si el token no está presente, redirigir al usuario a la página de inicio de sesión
-    window.location.href = `${baseURL}/login`;
+    window.location.href = `${baseURL3}/login`;
     return; // Detener la ejecución del código
   }
   return token;
@@ -16,7 +16,7 @@ const obtenerToken = async () => {
     try {
       // Hacer una solicitud HTTP al servidor para obtener el token
       const token = obtenerTokenre();
-      const respuesta = await fetch(`${baseURL}/usuario_aut`, {
+      const respuesta = await fetch(`${baseURL3}/usuario_aut`, {
         method: 'GET',
         headers: {
           "Content-Type": "application/json",
@@ -100,7 +100,7 @@ formAgregarUsuario.addEventListener("submit", async function (event) {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
         // Enviar los datos al servidor para crear el nuevo usuario
-        const response = await fetch(`${baseURL}/create_categoria`, {
+        const response = await fetch(`${baseURL3}/create_categoria`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -268,7 +268,7 @@ const getAll = async () => {
     try {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
-        const response = await fetch(`${baseURL}/categoria`,{
+        const response = await fetch(`${baseURL3}/categoria`,{
             method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -403,7 +403,7 @@ const saveChanges = async (id_categoria, valoresOriginales) => {
         if (isConfirmed) {
             // Verificar si el token está presente en el localStorage
             const token = obtenerTokenre();
-            const response = await fetch(`${baseURL}/categoria/${id_categoria}`, {
+            const response = await fetch(`${baseURL3}/categoria/${id_categoria}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -499,7 +499,7 @@ const changeState = async (userId, currentState) => {
         if (isConfirmed) {
             // Verificar si el token está presente en el localStorage
             const token = obtenerTokenre();
-            const response = await fetch(`${baseURL}/categoria/${userId}/state`, {
+            const response = await fetch(`${baseURL3}/categoria/${userId}/state`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -568,7 +568,7 @@ const deleteUser = async (userId) => {
       if (isConfirmed) {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
-        const response = await fetch(`${baseURL}/categoria_delete/${userId}`, {
+        const response = await fetch(`${baseURL3}/categoria_delete/${userId}`, {
           method: 'DELETE',
           headers:{
             Authorization: `Bearer ${token}`,
@@ -640,7 +640,7 @@ getAll()
     try {
         // Verificar si el token está presente en el localStorage
         const token = obtenerTokenre();
-        const response = await fetch(`${baseURL}/productos_stock`, {
+        const response = await fetch(`${baseURL3}/productos_stock`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             }
