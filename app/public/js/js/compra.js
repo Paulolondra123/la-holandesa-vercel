@@ -122,7 +122,7 @@ const getAllUsuario = async () => {
             throw new Error("Error en la solicitud");
         }
         const result = await response.json();
-        console.log(result);
+        //console.log(result);
 
         if (result.error) {
             console.error("Error:", result.message);
@@ -184,7 +184,7 @@ const getAllUsuarioPromise = getAllUsuario();
             <td>${formattedDate}</td>
             <td>
                 <div class="btn-group">
-                    <button type="button" onclick="descargarPDF()" class="btn btn btn-outline-danger"  aria-expanded="false">
+                    <button type="button" onclick="descargarPDF(${id_compra})" class="btn btn btn-outline-danger"  aria-expanded="false">
                         Imprimir
                     </button>
                 </div>
@@ -437,17 +437,20 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 }); */
 
 // Función para descargar el PDF
-async function descargarPDF() {
+async function descargarPDF(idCompra) {
     event.preventDefault();
+
+
 
     const token = obtenerTokenre(); // Asumiendo que obtienes el token de forma correcta
 
     try {
-        const response = await fetch(`${baseURL}/downloadpdf`, {
+        const response = await fetch(`${baseURL}/downloadpdf?id_compra=${idCompra}`, {
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`,
-            }
+            },
+            //body: JSON.stringify({idCompra})
         });
 
         if (!response.ok) {
@@ -462,7 +465,7 @@ async function descargarPDF() {
         const a = document.createElement('a');
         a.style.display = 'none';
         a.href = url;
-        a.download = 'reporte.pdf';
+        a.download = 'Recibo.pdf';
         document.body.appendChild(a);
         a.click();
         window.URL.revokeObjectURL(url);

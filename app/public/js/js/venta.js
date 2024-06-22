@@ -182,7 +182,7 @@ const getAllUsuarioPromise = getAllUsuario();
             <td>${formattedDate}</td>
             <td>
                 <div class="btn-group">
-                    <button type="button" class="btn btn btn-outline-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button type="button" onclick="descargarPDF(${id_venta})" class="btn btn btn-outline-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         Imprimir
                     </button>
                 </div>
@@ -425,3 +425,47 @@ document.addEventListener('DOMContentLoaded', async (event) => {
   });
 
   //*************************************notificaciones**************************************/
+
+
+
+
+
+  // Función para descargar el PDF
+async function descargarPDF(idVenta) {
+    event.preventDefault();
+
+
+
+    const token = obtenerTokenre(); // Asumiendo que obtienes el token de forma correcta
+
+    try {
+        const response = await fetch(`${baseURL}/downloadpdfventa?id_venta=${idVenta}`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            //body: JSON.stringify({idCompra})
+        });
+
+        if (!response.ok) {
+            throw new Error('Error en la solicitud');
+        }
+
+        // Convertir la respuesta en un Blob
+        const blob = await response.blob();
+        
+        // Crear un enlace temporal y disparar la descarga
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = 'Recibo.pdf';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+
+    } catch (error) {
+        console.error('Error:', error.message);
+        alert('Error al generar el PDF');
+    }
+}
