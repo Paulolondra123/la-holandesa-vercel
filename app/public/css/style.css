@@ -7,6 +7,12 @@
     /* --dark: #f7fff7; */
 }
 
+.border-ventas {
+    padding: 0 ;
+    border-bottom: 10px solid rgb(87, 87, 196);
+    outline: none;
+}
+
 /* animacion para la campanita de notificaciones */
 @keyframes shake {
     0% { transform: rotate(0deg); }
@@ -382,7 +388,10 @@ body * {
     align-items: center;
     justify-content: center;
     background: var(--dark);
-    border-radius: 40px;
+    border-radius: 50%;
+    background: #e0e0e0;
+    box-shadow: inset 5px 5px 10px #bebebe56,
+                inset -5px -5px 10px #ffffff;
 }
 
 .content .navbar .dropdown-item {
