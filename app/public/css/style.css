@@ -7,6 +7,19 @@
     /* --dark: #f7fff7; */
 }
 
+.font1{
+    font-family: sans-serif;
+}
+
+.font{
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.radius{
+    border-radius: 50px; 
+}
+
 .borde-inferior-usuarios {
     border-bottom: 5px solid rgb(206, 113, 37);
   }

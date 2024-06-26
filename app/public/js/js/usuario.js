@@ -203,7 +203,7 @@ const Users = ({
   /* const maskedPassword = `${contraseña.slice(0, 2)}..${contraseña.slice(-2)}`; */
   /* <!--<td style="width:10%;"><img src="data:image/jpeg;base64,${foto}" class="img-responsive img-fluid" alt="Responsive image"></td>--> */
   return `
-            <tr id="user-row-${id_usuario}">  <!-- Agregar un ID único para la fila --> 
+            <tr id="user-row-${id_usuario}" class="text-dark">  <!-- Agregar un ID único para la fila --> 
                 <td>${id_usuario}</td>
                 <td>${nombres}</td>
                 <td>${apellidos}</td>
@@ -282,8 +282,8 @@ const render = (data) => {
           search: "Buscar:",
           zeroRecords: "Sin resultados encontrados",
           paginate: {
-            first: "Primero",
-            last: "Ultimo",
+            //first: "Primero",
+            //last: "Ultimo",
             next: ">",
             previous: "<",
           },
