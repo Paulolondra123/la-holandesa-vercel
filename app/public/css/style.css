@@ -7,12 +7,22 @@
     /* --dark: #f7fff7; */
 }
 
-.border-ventas {
-    padding: 0 ;
-    border-bottom: 10px solid rgb(87, 87, 196);
-    outline: none;
-}
-
+.borde-inferior-usuarios {
+    border-bottom: 5px solid rgb(206, 113, 37);
+  }
+  
+  .borde-inferior-clientes {
+    border-bottom: 5px solid rgb(38, 35, 199);
+  }
+  
+  .borde-inferior-productos {
+    border-bottom: 5px solid rgb(25, 201, 54);
+  }
+  
+  .borde-inferior-ventas {
+    border-bottom: 5px solid red;
+  }
+  
 /* animacion para la campanita de notificaciones */
 @keyframes shake {
     0% { transform: rotate(0deg); }
@@ -394,6 +404,18 @@ body * {
                 inset -5px -5px 10px #ffffff;
 }
 
+.content .navbar .sidebar-toggler,
+.content .navbar .navbar-nav .nav-link1 i {
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--dark);
+    border-radius: 50%;
+    background: #e0e0e0;
+
+}
 .content .navbar .dropdown-item {
     color: var(--light);
 }
