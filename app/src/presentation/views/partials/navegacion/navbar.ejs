@@ -1,5 +1,5 @@
 <!-- Navbar Start -->
-<nav class="navbar navbar-expand bg-white-gris navbar-dark sticky-top px-4 py-2">
+<nav class="navbar navbar-expand bg-white navbar-dark sticky-top px-4 py-2 border-bottom">
     <a href="/" class="navbar-brand d-flex d-lg-none me-4">
         <h2 class="text-primary mb-0"><i class="fa fa-user-edit"></i></h2>
     </a>
@@ -7,7 +7,7 @@
         <i class="fa fa-bars"></i>
     </a>
     <form class="d-none d-md-flex ms-4">
-        <input id="searchBar" class="form-control bg-white border-0" type="search" placeholder="Search" />
+        <input id="searchBar" class="form-input rounded px-2 py-1 bg-claro-gris border-0 " type="search" placeholder="Search" />
     </form>
     <div class="navbar-nav align-items-center ms-auto">
         <div class="nav-item dropdown">
@@ -23,14 +23,13 @@
                 </div>
             </div>
         </div>
-        <div class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img class="rounded-circle me-lg-2" src="/user.jpg" alt="" style="width: 40px; height: 40px" />
-                <span class="d-none d-lg-inline-flex" id="usernavtop">adm</span>
+        <div class="nav-item dropdown d-flex">
+            <img class="rounded-circle me-lg-2" src="/user.jpg" alt="" style="width: 40px; height: 40px" />
+            <a href="#" class="bg-claro-gris text-dark px-2 rounded nav-link dropdown-toggle" data-bs-toggle="dropdown" >
+                <span class="truncate text-sm-center d-none d-lg-inline-flex" id="usernavtop">adm</span>
             </a>
-            <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
-                <a href="/vendedor/perfil" class="dropdown-item">Mi Perfil</a>
-                <!-- <a href="#" class="dropdown-item">Configuraciones</a> -->
+            <div class="dropdown-menu dropdown-menu-end bg-white border-0 rounded-0 rounded-bottom m-0">
+                <a href="/perfil" class="dropdown-item">Mi Perfil</a>
                 <a href="#" class="dropdown-item" id="logout-session">Cerrar Sesion</a>
             </div>
         </div>

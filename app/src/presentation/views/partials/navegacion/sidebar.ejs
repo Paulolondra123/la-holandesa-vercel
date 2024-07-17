@@ -8,47 +8,51 @@
 <!-- Spinner End -->
 
 <!-- Sidebar Start -->
-<div class="sidebar pe-2 pb-3">
-  <nav class="navbar bg-secondary navbar-dark">
-    <a href="/" style="display: flex; justify-content: center; width: 100%; height: 90px; ">
-      <img style="width: 60%" class="img-responsive img-fluid" alt="Responsive image" src="/flulll (2).png"
-        alt="" />
-    </a>
-    <div class="d-flex align-items-center ms-4 mb-4">
-      <div class="position-relative">
-        <img class="rounded-circle" src="/user.jpg" alt="" style="width: 40px; height: 40px" />
-        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-      </div>
-      <div class="ms-3">
-        <h6 class="mb-0" id="usernav">adm</h6>
-        <span id="perfi">adm</span>
-      </div>
-    </div>
-    <div class="navbar-nav w-100">
-      <a href="/" class="nav-item nav-link <%= currentRoute === '/' ? 'active' : '' %>""><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-      <a href="/usuarios" class="nav-item nav-link <%= currentRoute === '/usuarios' ? 'active' : '' %>"><i class="fi fi-sr-users-alt me-2"></i>Usuarios</a>
-      <a href="/medidas" class="nav-item nav-link <%= currentRoute === '/medidas' ? 'active' : '' %>"><i class="fi fi-sr-scale me-2"></i>Medidas</a>
-      <a href="/categorias" class="nav-item nav-link <%= currentRoute === '/categorias' ? 'active' : '' %>"><i class="fi fi-sr-category-alt me-2"></i>Categorias</a>
-      <a href="/productos" class="nav-item nav-link <%= currentRoute === '/productos' ? 'active' : '' %>"><i class="fi fi-sr-boxes me-2"></i>Productos</a>
-      <div class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle <%= ['/clientes', '/nueva-venta', '/ventas'].includes(currentRoute) ? 'active' : '' %>" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Registro
-          Ventas</a>
-        <div class="dropdown-menu bg-transparent border-0">
-          <a href="/clientes" class="dropdown-item <%= currentRoute === '/clientes' ? 'active' : '' %>">Clientes</a>
-          <a href="/nueva-venta" class="dropdown-item <%= currentRoute === '/nueva-venta' ? 'active' : '' %>">Nueva venta</a>
-          <a href="/ventas" class="dropdown-item <%= currentRoute === '/ventas' ? 'active' : '' %>">Ventas</a>
+<div class="sidebar bg-white border-end" style="height: 100%;">
+  <div style="display: flex;flex-direction: column;justify-content: space-between;height: 100%;">
+    <div style="height: 87%;">
+      <nav class="navbar navbar-dark">
+        <a href="/" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 57px;" class="border-bottom">
+          <h6 class="text-dark font " style="font-size: 20px;"><i class="fi fi-rs-cheese"></i>  La Holandesa</h6>
+        </a>
+        <div class="d-flex align-items-center ms-4 mb-4 mt-4">
+          <div class="position-relative">
+            <img class="rounded-circle" src="/user.jpg" alt="" style="width: 40px; height: 40px" />
+            <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+          </div>
+          <div class="ms-3">
+            <h6 class="mb-0 text-dark"" id="usernav">adm</h6>
+            <span id="perfi" class="text-dark">adm</span>
+          </div>
         </div>
-      </div>
-      <div class="nav-item dropdown">
-        <a href="#" class="nav-link dropdown-toggle <%= ['/proveedores', '/nueva-compra', '/compras'].includes(currentRoute) ? 'active' : '' %>" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Registro
-          Compras</a>
-        <div class="dropdown-menu bg-transparent border-0">
-          <a href="/proveedores" class="dropdown-item <%= currentRoute === '/proveedores' ? 'active' : '' %>">Proveedores</a>
-          <a href="/nueva-compra" class="dropdown-item <%= currentRoute === '/nueva-compra' ? 'active' : '' %>">Nueva compra</a>
-          <a href="/compras" class="dropdown-item <%= currentRoute === '/compras' ? 'active' : '' %>">Compras</a>
+        <div class="navbar-nav w-100">
+          <a href="/" class="nav-item nav-link <%= currentRoute === '/' ? 'active' : '' %>""><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+          <a href="/usuarios" class="nav-item nav-link <%= currentRoute === '/usuarios' ? 'active' : '' %>"><i class="fi fi-sr-users-alt me-2"></i>Usuarios</a>
+          <a href="/medidas" class="nav-item nav-link <%= currentRoute === '/medidas' ? 'active' : '' %>"><i class="fi fi-sr-scale me-2"></i>Medidas</a>
+          <a href="/categorias" class="nav-item nav-link <%= currentRoute === '/categorias' ? 'active' : '' %>"><i class="fi fi-sr-category-alt me-2"></i>Categorias</a>
+          <a href="/productos" class="nav-item nav-link <%= currentRoute === '/productos' ? 'active' : '' %>"><i class="fi fi-sr-boxes me-2"></i>Productos</a>
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle <%= ['/clientes', '/nueva-venta', '/ventas'].includes(currentRoute) ? 'active' : '' %>" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Registro
+              Ventas</a>
+            <div class="dropdown-menu bg-transparent border-0">
+              <a href="/clientes" class="dropdown-item <%= currentRoute === '/clientes' ? 'active' : '' %>">Clientes</a>
+              <a href="/nueva-venta" class="dropdown-item <%= currentRoute === '/nueva-venta' ? 'active' : '' %>">Nueva venta</a>
+              <a href="/ventas" class="dropdown-item <%= currentRoute === '/ventas' ? 'active' : '' %>">Ventas</a>
+            </div>
+          </div>
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle <%= ['/proveedores', '/nueva-compra', '/compras'].includes(currentRoute) ? 'active' : '' %>" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Registro
+              Compras</a>
+            <div class="dropdown-menu bg-transparent border-0">
+              <a href="/proveedores" class="dropdown-item <%= currentRoute === '/proveedores' ? 'active' : '' %>">Proveedores</a>
+              <a href="/nueva-compra" class="dropdown-item <%= currentRoute === '/nueva-compra' ? 'active' : '' %>">Nueva compra</a>
+              <a href="/compras" class="dropdown-item <%= currentRoute === '/compras' ? 'active' : '' %>">Compras</a>
+            </div>
+          </div>
         </div>
-      </div>
+      </nav>
     </div>
-  </nav>
+  </div>
+  
 </div>
 <!-- Sidebar End -->
