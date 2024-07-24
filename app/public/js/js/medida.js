@@ -184,7 +184,7 @@ const Medidas = ({
   const buttontxt = estado === true ? "SI" : "NO";
 
   return `
-        <tr id="medida-row-${id_medida}"> <!-- Agregar un ID único para la fila -->
+        <tr id="medida-row-${id_medida}" class="text-dark"> <!-- Agregar un ID único para la fila -->
             <td>${id_medida}</td>
             <td>${nombre_medida}</td>
             <td>${descripcion}</td>
@@ -260,7 +260,7 @@ const render = (data) => {
       pageLength: 5, // Mostrar 5 filas por página de manera predeterminada
       responsive: true,
       columnDefs: [
-        { targets: [2], width: '400px' } // Establece el ancho de la tercera columna en 200px y máximo en 300px
+        { targets: [2], width: '350px' } // Establece el ancho de la tercera columna en 200px y máximo en 300px
       ],
       autoWidth: true,
       order: [], // No ordenar ninguna columna al inicio
