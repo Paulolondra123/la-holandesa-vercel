@@ -182,7 +182,7 @@ const Proveedor = ({ id_proveedor, razon_social, telefono, descripcion, direccio
     const buttontxt = estado === true ? 'SI' : 'NO';
 
     return `
-        <tr id="Proveedor-row-${id_proveedor}"> <!-- Agregar un ID único para la fila -->
+        <tr id="Proveedor-row-${id_proveedor}" class="text-dark"> <!-- Agregar un ID único para la fila -->
             <td>${id_proveedor}</td>
             <td>${razon_social}</td>
             <td>${telefono}</td>

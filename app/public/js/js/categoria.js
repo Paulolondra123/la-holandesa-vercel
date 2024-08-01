@@ -176,7 +176,7 @@ const Categorias = ({ id_categoria, nombre_categoria, descripcion, fecha_registr
     const buttontxt = estado === true ? 'SI' : 'NO';
 
     return `
-        <tr id="categoria-row-${id_categoria}"> <!-- Agregar un ID único para la fila -->
+        <tr id="categoria-row-${id_categoria}" class="text-dark"> <!-- Agregar un ID único para la fila -->
             <td>${id_categoria}</td>
             <td>${nombre_categoria}</td>
             <td>${descripcion}</td>

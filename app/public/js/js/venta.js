@@ -174,7 +174,7 @@ const getAllUsuarioPromise = getAllUsuario();
 
 
     return `
-        <tr id="venta-row-${id_venta}">
+        <tr id="venta-row-${id_venta}" class="text-dark">
             <td>${id_venta}</td>
             <td>${usuarioNombre}</td>
             <td>${clienteNombre}</td>

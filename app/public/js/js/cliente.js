@@ -180,7 +180,7 @@ const Cliente = ({ id_cliente, nombre, apellido, nit, fecha_registro, estado }) 
     const buttontxt = estado === true ? 'SI' : 'NO';
 
     return `
-        <tr id="Cliente-row-${id_cliente}"> <!-- Agregar un ID único para la fila -->
+        <tr id="Cliente-row-${id_cliente}" class="text-dark"> <!-- Agregar un ID único para la fila -->
             <td>${id_cliente}</td>
             <td>${nombre}</td>
             <td>${apellido}</td>

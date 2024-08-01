@@ -364,7 +364,7 @@ const getAllMeasuresPromise = getAllMeasure();
     //console.log("Nombre de la medida:", medidaNombre);
 
     return `
-        <tr id="producto-row-${id_producto}">
+        <tr id="producto-row-${id_producto}" class="text-dark">
             <td>${id_producto}</td>
             <td>${nombre_producto}</td>
             <td>${precio}</td>
